@@ -10,7 +10,7 @@ const PATHS = {
   PUBLIC_ROUTES: ["/", "/login", "/register"],
 };
 
-export type UserRole = "admin" | "employee";
+export type UserRole = "admin" | "customer";
 
 const getRoutes = (request: NextRequest, routes: string[]) => {
   const pathname = request.nextUrl.pathname;

@@ -15,3 +15,783 @@ model Post {
 
     @@index([name])
 }
+
+enum LoginProvider {
+    EMAIL  @map("email")
+    GOOGLE @map("google")
+
+    @@map("login_provider")
+}
+
+enum UserRole {
+    ADMIN    @map("admin")
+    CUSTOMER @map("customer")
+
+    @@map("user_role")
+}
+
+enum Theme {
+    LIGHT  @map("light")
+    DARK   @map("dark")
+    SYSTEM @map("system")
+
+    @@map("theme")
+}
+
+enum Language {
+    EN @map("en")
+    ID @map("id")
+
+    @@map("language")
+}
+
+enum Gender {
+    MALE   @map("male")
+    FEMALE @map("female")
+
+    @@map("gender")
+}
+
+enum MaritalStatus {
+    SINGLE   @map("single")
+    MARRIED  @map("married")
+    DIVORCED @map("divorced")
+    WIDOWED  @map("widowed")
+
+    @@map("marital_status")
+}
+
+enum EmploymentType {
+    CIVIL_SERVANT        @map("civil_servant")
+    PRIVATE_EMPLOYEE     @map("private_employee")
+    STATE_OWNED_EMPLOYEE @map("state_owned_employee")
+    CONTRACT_EMPLOYEE    @map("contract_employee")
+    FREELANCER           @map("freelancer")
+    ENTREPRENEUR         @map("entrepreneur")
+    BUSINESS_OWNER       @map("business_owner")
+    FARMER               @map("farmer")
+    FISHERMAN            @map("fisherman")
+    LABORER              @map("laborer")
+    TEACHER              @map("teacher")
+    LECTURER             @map("lecturer")
+    HEALTH_WORKER        @map("health_worker")
+    STUDENT              @map("student")
+    HOMEMAKER            @map("homemaker")
+    RETIRED              @map("retired")
+    UNEMPLOYED           @map("unemployed")
+
+    @@map("employment_type")
+}
+
+enum Relationship {
+    FATHER      @map("father")
+    MOTHER      @map("mother")
+    HUSBAND     @map("husband")
+    WIFE        @map("wife")
+    CHILD       @map("child")
+    SIBLING     @map("sibling")
+    GRANDFATHER @map("grandfather")
+    GRANDMOTHER @map("grandmother")
+    UNCLE       @map("uncle")
+    AUNT        @map("aunt")
+    COUSIN      @map("cousin")
+    GUARDIAN    @map("guardian")
+    OTHER       @map("other")
+
+    @@map("relationship")
+}
+
+enum LoanType {
+    PERSONAL     @map("personal")
+    MORTGAGE     @map("mortgage")
+    VEHICLE      @map("vehicle")
+    BUSINESS     @map("business")
+    MULTIPURPOSE @map("multipurpose")
+
+    @@map("loan_type")
+}
+
+enum ApplicationStatus {
+    DRAFT     @map("draft")
+    SUBMITTED @map("submitted")
+    REVIEWING @map("reviewing")
+    APPROVED  @map("approved")
+    REJECTED  @map("rejected")
+    DISBURSED @map("disbursed")
+    CANCELLED @map("cancelled")
+
+    @@map("application_status")
+}
+
+enum CreditScore {
+    ELIGIBLE     @map("eligible")
+    NOT_ELIGIBLE @map("not_eligible")
+
+    @@map("credit_score")
+}
+
+enum LoanStatus {
+    ACTIVE    @map("active")
+    COMPLETED @map("completed")
+    OVERDUE   @map("overdue")
+    DEFAULT   @map("default")
+
+    @@map("loan_status")
+}
+
+enum PaymentStatus {
+    ON_TIME @map("on_time")
+    LATE    @map("late")
+    PENDING @map("pending")
+
+    @@map("payment_status")
+}
+
+enum ReportType {
+    DAILY     @map("daily")
+    WEEKLY    @map("weekly")
+    MONTHLY   @map("monthly")
+    QUARTERLY @map("quarterly")
+    YEARLY    @map("yearly")
+    CUSTOM    @map("custom")
+
+    @@map("report_type")
+}
+
+enum NotificationType {
+    SYSTEM   @map("system")
+    PERSONAL @map("personal")
+
+    @@map("notification_type")
+}
+
+enum NotificationPriority {
+    LOW    @map("low")
+    NORMAL @map("normal")
+    HIGH   @map("high")
+    URGENT @map("urgent")
+
+    @@map("notification_priority")
+}
+
+enum QuestionType {
+    SINGLE_CHOICE   @map("single_choice")
+    MULTIPLE_CHOICE @map("multiple_choice")
+    YES_NO          @map("yes_no")
+    TRUE_FALSE      @map("true_false")
+    RATING          @map("rating")
+    SCALE           @map("scale")
+    PERCENTAGE      @map("percentage")
+
+    @@map("question_type")
+}
+
+enum QuestionCategory {
+    PERSONAL       @map("personal")
+    IDENTITY       @map("identity")
+    CONTACT        @map("contact")
+    ADDRESS        @map("address")
+    EMPLOYMENT     @map("employment")
+    INCOME         @map("income")
+    EXPENSE        @map("expense")
+    FINANCIAL      @map("financial")
+    BUSINESS       @map("business")
+    COLLATERAL     @map("collateral")
+    REFERENCE      @map("reference")
+    EMERGENCY      @map("emergency")
+    EDUCATION      @map("education")
+    FAMILY         @map("family")
+    LOAN_PURPOSE   @map("loan_purpose")
+    CREDIT_HISTORY @map("credit_history")
+    ASSETS         @map("assets")
+    LIABILITIES    @map("liabilities")
+    BANK_ACCOUNT   @map("bank_account")
+    OTHER          @map("other")
+
+    @@map("question_category")
+}
+
+model User {
+    id       String   @id @default(uuid()) @map("id") @db.VarChar(56)
+    username String   @unique @map("username") @db.VarChar(50)
+    email    String   @unique @map("email") @db.VarChar(150)
+    avatar   String?  @map("avatar")
+    image    String?  @map("image")
+    role     UserRole @default(ADMIN) @map("role")
+
+    settings      Settings?
+    permissions   Permissions?
+    customer      Customer?
+    admin         Admin?
+    notifications Notification[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_user_id")
+    @@index([username], name: "idx_user_username")
+    @@index([email], name: "idx_user_email")
+    @@index([avatar], name: "idx_user_avatar")
+    @@index([image], name: "idx_user_image")
+    @@index([role], name: "idx_user_role")
+    @@index([createdAt], name: "idx_user_created_at")
+    @@index([updatedAt], name: "idx_user_updated_at")
+    @@map("users")
+}
+
+model Settings {
+    id           String   @id @default(uuid()) @map("id") @db.VarChar(56)
+    theme        Theme    @default(SYSTEM) @map("theme")
+    language     Language @default(ID) @map("language")
+    notification Boolean  @default(true) @map("notification") @db.Boolean
+
+    userId String @unique @map("user_id") @db.VarChar(56)
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_settings_id")
+    @@index([theme], name: "idx_settings_theme")
+    @@index([language], name: "idx_settings_language")
+    @@index([notification], name: "idx_settings_notification")
+    @@index([userId], name: "idx_settings_user_id")
+    @@index([createdAt], name: "idx_settings_created_at")
+    @@index([updatedAt], name: "idx_settings_updated_at")
+    @@map("settings")
+}
+
+model Permissions {
+    id           String  @id @default(uuid()) @map("id") @db.VarChar(56)
+    createReport Boolean @default(false) @map("create_report") @db.Boolean
+
+    userId String @unique @map("user_id") @db.VarChar(56)
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_permissions_id")
+    @@index([createReport], name: "idx_permissions_create_report")
+    @@index([userId], name: "idx_permissions_user_id")
+    @@index([createdAt], name: "idx_permissions_created_at")
+    @@index([updatedAt], name: "idx_permissions_updated_at")
+    @@map("permissions")
+}
+
+model Notification {
+    id          String               @id @default(uuid()) @map("id") @db.VarChar(56)
+    type        NotificationType     @map("type")
+    category    String               @map("category") @db.VarChar(100)
+    title       String               @map("title") @db.VarChar(150)
+    message     String               @map("message") @db.Text
+    actionUrl   String?              @map("action_url") @db.VarChar(255)
+    actionLabel String?              @map("action_label") @db.VarChar(50)
+    priority    NotificationPriority @default(NORMAL) @map("priority")
+    isRead      Boolean              @default(false) @map("is_read") @db.Boolean
+    readAt      DateTime?            @map("read_at") @db.Timestamptz()
+    relatedType String?              @map("related_type") @db.VarChar(50)
+
+    relatedId String? @map("related_id") @db.VarChar(56)
+    userId    String? @map("user_id") @db.VarChar(56)
+    user      User?   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_notification_id")
+    @@index([type], name: "idx_notification_type")
+    @@index([category], name: "idx_notification_category")
+    @@index([title], name: "idx_notification_title")
+    @@index([message], name: "idx_notification_message")
+    @@index([actionUrl], name: "idx_notification_action_url")
+    @@index([actionLabel], name: "idx_notification_action_label")
+    @@index([priority], name: "idx_notification_priority")
+    @@index([isRead], name: "idx_notification_is_read")
+    @@index([readAt], name: "idx_notification_read_at")
+    @@index([relatedType], name: "idx_notification_related_type")
+    @@index([relatedId], name: "idx_notification_related_id")
+    @@index([userId], name: "idx_notification_user_id")
+    @@index([createdAt], name: "idx_notification_created_at")
+    @@index([updatedAt], name: "idx_notification_updated_at")
+    @@map("notifications")
+}
+
+model Admin {
+    id            String         @id @default(cuid()) @map("id") @db.VarChar(56)
+    fullName      String         @map("full_name") @db.VarChar(150)
+    nationalId    String?        @unique @map("national_id") @db.VarChar(20)
+    birthPlace    String?        @map("birth_place") @db.VarChar(100)
+    birthDate     DateTime?      @map("birth_date") @db.Timestamptz()
+    gender        Gender?        @map("gender")
+    phone         String?        @map("phone") @db.VarChar(20)
+    email         String?        @map("email") @db.VarChar(150)
+    address       String?        @map("address") @db.Text
+    maritalStatus MaritalStatus? @map("marital_status")
+
+    userId               String?             @unique @map("user_id") @db.VarChar(56)
+    user                 User?               @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    reports              Report[]
+    reviewedApplications CreditApplication[] @relation("ReviewedApplications")
+    approvedApplications CreditApplication[] @relation("ApprovedApplications")
+    createdQuestions     InterviewQuestion[] @relation("CreatedQuestions")
+    updatedQuestions     InterviewQuestion[] @relation("UpdatedQuestions")
+    creditWorthinesses   CreditWorthiness[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_admin_id")
+    @@index([fullName], name: "idx_admin_full_name")
+    @@index([nationalId], name: "idx_admin_national_id")
+    @@index([birthPlace], name: "idx_admin_birth_place")
+    @@index([birthDate], name: "idx_admin_birth_date")
+    @@index([gender], name: "idx_admin_gender")
+    @@index([phone], name: "idx_admin_phone")
+    @@index([email], name: "idx_admin_email")
+    @@index([address], name: "idx_admin_address")
+    @@index([maritalStatus], name: "idx_admin_marital_status")
+    @@index([userId], name: "idx_admin_user_id")
+    @@index([createdAt], name: "idx_admin_created_at")
+    @@index([updatedAt], name: "idx_admin_updated_at")
+    @@map("admins")
+}
+
+model Customer {
+    id               String          @id @default(uuid()) @map("id") @db.VarChar(56)
+    fullName         String          @map("full_name") @db.VarChar(150)
+    nationalId       String?         @unique @map("national_id") @db.VarChar(20)
+    birthPlace       String?         @map("birth_place") @db.VarChar(100)
+    birthDate        DateTime?       @map("birth_date") @db.Timestamptz()
+    gender           Gender?         @map("gender")
+    phone            String?         @map("phone") @db.VarChar(20)
+    email            String?         @map("email") @db.VarChar(150)
+    address          String?         @map("address") @db.Text
+    maritalStatus    MaritalStatus?  @map("marital_status")
+    employmentType   EmploymentType? @map("employment_type")
+    employmentName   String?         @map("employment_name") @db.VarChar(150)
+    employmentPeriod Int?            @map("employment_period") @db.Integer
+
+    userId             String?             @unique @map("user_id") @db.VarChar(56)
+    user               User?               @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    document           Document?
+    bankAccounts       BankAccount[]
+    guarantors         Guarantor[]
+    creditApplications CreditApplication[]
+    loanReferences     LoanReference[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_customer_id")
+    @@index([fullName], name: "idx_customer_full_name")
+    @@index([nationalId], name: "idx_customer_national_id")
+    @@index([birthPlace], name: "idx_customer_birth_place")
+    @@index([birthDate], name: "idx_customer_birth_date")
+    @@index([gender], name: "idx_customer_gender")
+    @@index([phone], name: "idx_customer_phone")
+    @@index([email], name: "idx_customer_email")
+    @@index([address], name: "idx_customer_address")
+    @@index([maritalStatus], name: "idx_customer_marital_status")
+    @@index([employmentType], name: "idx_customer_employment_type")
+    @@index([employmentName], name: "idx_customer_employment_name")
+    @@index([employmentPeriod], name: "idx_customer_employment_period")
+    @@index([userId], name: "idx_customer_user_id")
+    @@index([createdAt], name: "idx_customer_created_at")
+    @@index([updatedAt], name: "idx_customer_updated_at")
+    @@map("customers")
+}
+
+model BankAccount {
+    id            String  @id @default(uuid()) @map("id") @db.VarChar(56)
+    accountName   String  @map("account_name") @db.VarChar(150)
+    accountNumber String  @map("account_number") @db.VarChar(100)
+    isPrimary     Boolean @default(false) @map("is_primary") @db.Boolean
+    isVerified    Boolean @default(false) @map("is_verified") @db.Boolean
+    isActive      Boolean @default(true) @map("is_active") @db.Boolean
+
+    customerId         String              @map("customer_id") @db.VarChar(56)
+    customer           Customer            @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    creditApplications CreditApplication[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_bank_account_id")
+    @@index([accountName], name: "idx_bank_account_name")
+    @@index([accountNumber], name: "idx_bank_account_number")
+    @@index([isPrimary], name: "idx_bank_account_is_primary")
+    @@index([isVerified], name: "idx_bank_account_is_verified")
+    @@index([isActive], name: "idx_bank_account_is_active")
+    @@index([customerId], name: "idx_bank_account_customer_id")
+    @@index([createdAt], name: "idx_bank_account_created_at")
+    @@index([updatedAt], name: "idx_bank_account_updated_at")
+    @@map("bank_accounts")
+}
+
+model Guarantor {
+    id               String         @id @default(uuid()) @map("id") @db.VarChar(56)
+    fullName         String         @map("full_name") @db.VarChar(150)
+    nationalId       String         @map("national_id") @db.VarChar(20)
+    birthPlace       String         @map("birth_place") @db.VarChar(100)
+    birthDate        DateTime       @map("birth_date") @db.Timestamptz()
+    gender           Gender         @map("gender")
+    address          String         @map("address") @db.Text
+    phone            String         @map("phone") @db.VarChar(20)
+    email            String?        @map("email") @db.VarChar(150)
+    maritalStatus    MaritalStatus  @map("marital_status")
+    employmentType   EmploymentType @map("employment_type")
+    employmentName   String?        @map("employment_name") @db.VarChar(150)
+    employmentPeriod Int?           @map("employment_period") @db.Integer
+    relationship     Relationship   @map("relationship")
+
+    customerId         String              @map("customer_id") @db.VarChar(56)
+    customer           Customer            @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    document           Document?
+    creditApplications CreditApplication[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_guarantor_id")
+    @@index([fullName], name: "idx_guarantor_full_name")
+    @@index([nationalId], name: "idx_guarantor_national_id")
+    @@index([birthPlace], name: "idx_guarantor_birth_place")
+    @@index([birthDate], name: "idx_guarantor_birth_date")
+    @@index([gender], name: "idx_guarantor_gender")
+    @@index([address], name: "idx_guarantor_address")
+    @@index([phone], name: "idx_guarantor_phone")
+    @@index([email], name: "idx_guarantor_email")
+    @@index([maritalStatus], name: "idx_guarantor_marital_status")
+    @@index([employmentType], name: "idx_guarantor_employment_type")
+    @@index([employmentName], name: "idx_guarantor_employment_name")
+    @@index([employmentPeriod], name: "idx_guarantor_employment_period")
+    @@index([relationship], name: "idx_guarantor_relationship")
+    @@index([customerId], name: "idx_guarantor_customer_id")
+    @@index([createdAt], name: "idx_guarantor_created_at")
+    @@index([updatedAt], name: "idx_guarantor_updated_at")
+    @@map("guarantors")
+}
+
+model Document {
+    id            String  @id @default(uuid()) @map("id") @db.VarChar(56)
+    identityCard  String? @map("identity_card")
+    familyCard    String? @map("family_card")
+    salarySlip    String? @map("salary_slip")
+    bankStatement String? @map("bank_statement")
+    selfie        String? @map("selfie")
+
+    customerId  String?    @unique @map("customer_id") @db.VarChar(56)
+    customer    Customer?  @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    guarantorId String?    @unique @map("guarantor_id") @db.VarChar(56)
+    guarantor   Guarantor? @relation(fields: [guarantorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_document_id")
+    @@index([identityCard], name: "idx_document_identity_card")
+    @@index([familyCard], name: "idx_document_family_card")
+    @@index([salarySlip], name: "idx_document_salary_slip")
+    @@index([bankStatement], name: "idx_document_bank_statement")
+    @@index([selfie], name: "idx_document_selfie")
+    @@index([customerId], name: "idx_document_customer_id")
+    @@index([guarantorId], name: "idx_document_guarantor_id")
+    @@index([createdAt], name: "idx_document_created_at")
+    @@index([updatedAt], name: "idx_document_updated_at")
+    @@map("documents")
+}
+
+model CreditApplication {
+    id                    String            @id @default(uuid()) @map("id") @db.VarChar(56)
+    applicationNumber     String            @unique @map("application_number") @db.VarChar(50)
+    loanType              LoanType          @map("loan_type")
+    loanAmount            Int               @map("loan_amount") @db.Integer
+    loanPeriod            Int               @map("loan_period") @db.Integer
+    loanPurpose           String?           @map("loan_purpose") @db.Text
+    collateralCertificate String?           @map("collateral_certificate")
+    collateralValue       Int?              @map("collateral_value")
+    monthlyIncome         Int               @map("monthly_income") @db.Integer
+    incomeProof           String?           @map("income_proof")
+    monthlyExpenses       Int               @map("monthly_expenses") @db.Integer
+    surplus               Int               @map("surplus") @db.Integer
+    status                ApplicationStatus @default(DRAFT) @map("status")
+    submittedAt           DateTime?         @map("submitted_at") @db.Timestamptz()
+    reviewedAt            DateTime?         @map("reviewed_at") @db.Timestamptz()
+    approvedAt            DateTime?         @map("approved_at") @db.Timestamptz()
+    rejectedAt            DateTime?         @map("rejected_at") @db.Timestamptz()
+    rejectionReason       String?           @map("rejection_reason") @db.Text
+    disbursedAt           DateTime?         @map("disbursed_at") @db.Timestamptz()
+    notes                 String?           @map("notes") @db.Text
+
+    reviewerId       String?           @map("reviewer_id") @db.VarChar(56)
+    reviewer         Admin?            @relation("ReviewedApplications", fields: [reviewerId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    approverId       String?           @map("approver_id") @db.VarChar(56)
+    approver         Admin?            @relation("ApprovedApplications", fields: [approverId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    customerId       String            @map("customer_id") @db.VarChar(56)
+    customer         Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    guarantorId      String            @map("guarantor_id") @db.VarChar(56)
+    guarantor        Guarantor         @relation(fields: [guarantorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    bankAccountId    String            @map("bank_account_id") @db.VarChar(56)
+    bankAccount      BankAccount       @relation(fields: [bankAccountId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    loanReference    LoanReference?
+    creditWorthiness CreditWorthiness?
+    interviewAnswers InterviewAnswer[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_credit_application_id")
+    @@index([applicationNumber], name: "idx_credit_application_number")
+    @@index([loanType], name: "idx_credit_application_loan_type")
+    @@index([loanAmount], name: "idx_credit_application_loan_amount")
+    @@index([loanPeriod], name: "idx_credit_application_loan_period")
+    @@index([loanPurpose], name: "idx_credit_application_loan_purpose")
+    @@index([collateralCertificate], name: "idx_credit_application_collateral_cert")
+    @@index([collateralValue], name: "idx_credit_application_collateral_value")
+    @@index([monthlyIncome], name: "idx_credit_application_monthly_income")
+    @@index([incomeProof], name: "idx_credit_application_income_proof")
+    @@index([monthlyExpenses], name: "idx_credit_application_monthly_expenses")
+    @@index([surplus], name: "idx_credit_application_surplus")
+    @@index([status], name: "idx_credit_application_status")
+    @@index([submittedAt], name: "idx_credit_application_submitted_at")
+    @@index([reviewedAt], name: "idx_credit_application_reviewed_at")
+    @@index([approvedAt], name: "idx_credit_application_approved_at")
+    @@index([rejectedAt], name: "idx_credit_application_rejected_at")
+    @@index([rejectionReason], name: "idx_credit_application_rejection_reason")
+    @@index([disbursedAt], name: "idx_credit_application_disbursed_at")
+    @@index([notes], name: "idx_credit_application_notes")
+    @@index([reviewerId], name: "idx_credit_application_reviewer_id")
+    @@index([approverId], name: "idx_credit_application_approver_id")
+    @@index([customerId], name: "idx_credit_application_customer_id")
+    @@index([guarantorId], name: "idx_credit_application_guarantor_id")
+    @@index([bankAccountId], name: "idx_credit_application_bank_account_id")
+    @@index([createdAt], name: "idx_credit_application_created_at")
+    @@index([updatedAt], name: "idx_credit_application_updated_at")
+    @@map("credit_applications")
+}
+
+model CreditWorthiness {
+    id               String      @id @default(uuid()) @map("id") @db.VarChar(56)
+    creditScore      CreditScore @map("credit_score")
+    assessmentResult String      @map("assessment_result") @db.Text
+    assessedAt       DateTime    @default(now()) @map("assessed_at") @db.Timestamptz()
+
+    assessorId          String?           @map("assessor_id") @db.VarChar(56)
+    assessor            Admin?            @relation(fields: [assessorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    creditApplicationId String            @unique @map("credit_application_id") @db.VarChar(56)
+    creditApplication   CreditApplication @relation(fields: [creditApplicationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_credit_worthiness_id")
+    @@index([creditScore], name: "idx_credit_worthiness_credit_score")
+    @@index([assessmentResult], name: "idx_credit_worthiness_assessment_result")
+    @@index([assessedAt], name: "idx_credit_worthiness_assessed_at")
+    @@index([assessorId], name: "idx_credit_worthiness_assessor_id")
+    @@index([creditApplicationId], name: "idx_credit_worthiness_credit_application_id")
+    @@index([createdAt], name: "idx_credit_worthiness_created_at")
+    @@index([updatedAt], name: "idx_credit_worthiness_updated_at")
+    @@map("credit_worthiness")
+}
+
+model InterviewQuestion {
+    id           String            @id @default(uuid()) @map("id") @db.VarChar(56)
+    questionText String            @map("question_text") @db.Text
+    questionType QuestionType      @map("question_type")
+    category     QuestionCategory? @map("category")
+    isRequired   Boolean           @default(true) @map("is_required") @db.Boolean
+    isActive     Boolean           @default(true) @map("is_active") @db.Boolean
+    orderNumber  Int               @map("order_number") @db.Integer
+    options      String[]          @default([]) @map("options")
+    placeholder  String?           @map("placeholder") @db.VarChar(255)
+
+    creatorId        String?           @map("creator_id") @db.VarChar(56)
+    creator          Admin?            @relation("CreatedQuestions", fields: [creatorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    updaterId        String?           @map("updater_id") @db.VarChar(56)
+    updater          Admin?            @relation("UpdatedQuestions", fields: [updaterId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+    interviewAnswers InterviewAnswer[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_interview_questions_id")
+    @@index([questionText], name: "idx_interview_questions_question_text")
+    @@index([questionType], name: "idx_interview_questions_question_type")
+    @@index([category], name: "idx_interview_questions_category")
+    @@index([isRequired], name: "idx_interview_questions_is_required")
+    @@index([isActive], name: "idx_interview_questions_is_active")
+    @@index([orderNumber], name: "idx_interview_questions_order_number")
+    @@index([options], name: "idx_interview_questions_options")
+    @@index([placeholder], name: "idx_interview_questions_placeholder")
+    @@index([creatorId], name: "idx_interview_questions_creator_id")
+    @@index([updaterId], name: "idx_interview_questions_updater_id")
+    @@index([createdAt], name: "idx_interview_questions_created_at")
+    @@index([updatedAt], name: "idx_interview_questions_updated_at")
+    @@map("interview_questions")
+}
+
+model InterviewAnswer {
+    id         String @id @default(uuid()) @map("id") @db.VarChar(56)
+    answerText String @map("answer_text") @db.Text
+
+    creditApplicationId String            @map("credit_application_id") @db.VarChar(56)
+    creditApplication   CreditApplication @relation(fields: [creditApplicationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    interviewQuestionId String            @map("interview_question_id") @db.VarChar(56)
+    interviewQuestion   InterviewQuestion @relation(fields: [interviewQuestionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_interview_answers_id")
+    @@index([answerText], name: "idx_interview_answers_answer_text")
+    @@index([creditApplicationId], name: "idx_interview_answers_credit_application_id")
+    @@index([interviewQuestionId], name: "idx_interview_answers_interview_question_id")
+    @@index([createdAt], name: "idx_interview_answers_created_at")
+    @@index([updatedAt], name: "idx_interview_answers_updated_at")
+    @@map("interview_answers")
+}
+
+model LoanReference {
+    id              String     @id @default(uuid()) @map("id") @db.VarChar(56)
+    loanNumber      String     @unique @map("loan_number") @db.VarChar(50)
+    principalAmount Int        @map("principal_amount") @db.Integer
+    interestRate    Int        @map("interest_rate") @db.Integer
+    loanPeriod      Int        @map("loan_period") @db.Integer
+    monthlyPayment  Int        @map("monthly_payment") @db.Integer
+    totalPayment    Int        @map("total_payment") @db.Integer
+    status          LoanStatus @default(ACTIVE) @map("status")
+    startDate       DateTime   @map("start_date") @db.Timestamptz()
+    endDate         DateTime   @map("end_date") @db.Timestamptz()
+    nextPaymentDate DateTime   @map("next_payment_date") @db.Timestamptz()
+    overdueCount    Int        @default(0) @map("overdue_count") @db.Integer
+    lateFeeAmount   Int        @default(0) @map("late_fee_amount") @db.Integer
+
+    customerId          String            @map("customer_id") @db.VarChar(56)
+    customer            Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    creditApplicationId String            @unique @map("credit_application_id") @db.VarChar(56)
+    creditApplication   CreditApplication @relation(fields: [creditApplicationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    loanBalance         LoanBalance?
+    paymentRecords      PaymentRecord[]
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_loan_reference_id")
+    @@index([loanNumber], name: "idx_loan_reference_loan_number")
+    @@index([principalAmount], name: "idx_loan_reference_principal_amount")
+    @@index([interestRate], name: "idx_loan_reference_interest_rate")
+    @@index([loanPeriod], name: "idx_loan_reference_loan_period")
+    @@index([monthlyPayment], name: "idx_loan_reference_monthly_payment")
+    @@index([totalPayment], name: "idx_loan_reference_total_payment")
+    @@index([status], name: "idx_loan_reference_status")
+    @@index([startDate], name: "idx_loan_reference_start_date")
+    @@index([endDate], name: "idx_loan_reference_end_date")
+    @@index([nextPaymentDate], name: "idx_loan_reference_next_payment_date")
+    @@index([overdueCount], name: "idx_loan_reference_overdue_count")
+    @@index([lateFeeAmount], name: "idx_loan_reference_late_fee_amount")
+    @@index([customerId], name: "idx_loan_reference_customer_id")
+    @@index([creditApplicationId], name: "idx_loan_reference_credit_application_id")
+    @@index([createdAt], name: "idx_loan_reference_created_at")
+    @@index([updatedAt], name: "idx_loan_reference_updated_at")
+    @@map("loan_references")
+}
+
+model LoanBalance {
+    id                 String    @id @default(uuid()) @map("id") @db.VarChar(56)
+    principalRemaining Int       @map("principal_remaining") @db.Integer
+    interestRemaining  Int       @map("interest_remaining") @db.Integer
+    totalRemaining     Int       @map("total_remaining") @db.Integer
+    principalPaid      Int       @map("principal_paid") @db.Integer
+    interestPaid       Int       @map("interest_paid") @db.Integer
+    totalPaid          Int       @map("total_paid") @db.Integer
+    lateFeeTotal       Int       @default(0) @map("late_fee_total") @db.Integer
+    lastPaymentDate    DateTime? @map("last_payment_date") @db.Timestamptz()
+    lastPaymentAmount  Int       @default(0) @map("last_payment_amount") @db.Integer
+
+    loanReferenceId String        @unique @map("loan_reference_id") @db.VarChar(56)
+    loanReference   LoanReference @relation(fields: [loanReferenceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_loan_balance_id")
+    @@index([principalRemaining], name: "idx_loan_balance_principal_remaining")
+    @@index([interestRemaining], name: "idx_loan_balance_interest_remaining")
+    @@index([totalRemaining], name: "idx_loan_balance_total_remaining")
+    @@index([principalPaid], name: "idx_loan_balance_principal_paid")
+    @@index([interestPaid], name: "idx_loan_balance_interest_paid")
+    @@index([totalPaid], name: "idx_loan_balance_total_paid")
+    @@index([lateFeeTotal], name: "idx_loan_balance_late_fee_total")
+    @@index([lastPaymentDate], name: "idx_loan_balance_last_payment_date")
+    @@index([lastPaymentAmount], name: "idx_loan_balance_last_payment_amount")
+    @@index([loanReferenceId], name: "idx_loan_balance_loan_reference_id")
+    @@index([createdAt], name: "idx_loan_balance_created_at")
+    @@index([updatedAt], name: "idx_loan_balance_updated_at")
+    @@map("loan_balances")
+}
+
+model PaymentRecord {
+    id                String        @id @default(uuid()) @map("id") @db.VarChar(56)
+    installmentNumber Int           @map("installment_number") @db.Integer
+    dueDate           DateTime      @map("due_date") @db.Timestamptz()
+    paymentDate       DateTime?     @map("payment_date") @db.Timestamptz()
+    totalAmount       Int           @map("total_amount") @db.Integer
+    principalAmount   Int           @map("principal_amount") @db.Integer
+    interestAmount    Int           @map("interest_amount") @db.Integer
+    paidAmount        Int           @default(0) @map("paid_amount") @db.Integer
+    lateFeeAmount     Int           @default(0) @map("late_fee_amount") @db.Integer
+    status            PaymentStatus @default(PENDING) @map("status")
+    daysOverdue       Int           @default(0) @map("days_overdue") @db.Integer
+
+    loanReferenceId String        @map("loan_reference_id") @db.VarChar(56)
+    loanReference   LoanReference @relation(fields: [loanReferenceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_payment_record_id")
+    @@index([installmentNumber], name: "idx_payment_record_installment_number")
+    @@index([dueDate], name: "idx_payment_record_due_date")
+    @@index([paymentDate], name: "idx_payment_record_payment_date")
+    @@index([totalAmount], name: "idx_payment_record_total_amount")
+    @@index([principalAmount], name: "idx_payment_record_principal_amount")
+    @@index([interestAmount], name: "idx_payment_record_interest_amount")
+    @@index([paidAmount], name: "idx_payment_record_paid_amount")
+    @@index([lateFeeAmount], name: "idx_payment_record_late_fee_amount")
+    @@index([status], name: "idx_payment_record_status")
+    @@index([daysOverdue], name: "idx_payment_record_days_overdue")
+    @@index([loanReferenceId], name: "idx_payment_record_loan_reference_id")
+    @@index([createdAt], name: "idx_payment_record_created_at")
+    @@index([updatedAt], name: "idx_payment_record_updated_at")
+    @@map("payment_records")
+}
+
+model Report {
+    id          String     @id @default(uuid()) @map("id") @db.VarChar(56)
+    reportType  ReportType @map("report_type")
+    title       String     @map("title") @db.VarChar(255)
+    description String?    @map("description") @db.Text
+    startDate   DateTime   @map("start_date") @db.Timestamptz()
+    endDate     DateTime   @map("end_date") @db.Timestamptz()
+    fileUrl     String?    @map("file_url")
+
+    generatorId String? @map("generator_id") @db.VarChar(56)
+    generator   Admin?  @relation(fields: [generatorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+    updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+    @@index([id], name: "idx_report_id")
+    @@index([reportType], name: "idx_report_report_type")
+    @@index([title], name: "idx_report_title")
+    @@index([description], name: "idx_report_description")
+    @@index([startDate], name: "idx_report_start_date")
+    @@index([endDate], name: "idx_report_end_date")
+    @@index([fileUrl], name: "idx_report_file_url")
+    @@index([generatorId], name: "idx_report_generator_id")
+    @@index([createdAt], name: "idx_report_created_at")
+    @@index([updatedAt], name: "idx_report_updated_at")
+    @@map("reports")
+}

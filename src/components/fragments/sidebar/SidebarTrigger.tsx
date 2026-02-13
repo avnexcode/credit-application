@@ -19,7 +19,7 @@ export const SidebarTrigger = ({ className }: SidebarTriggerProps) => {
     >
       <Image
         src={
-          "https://thpvradgzhfshaqgteqn.supabase.co/storage/v1/object/public/resource/avnexeed.ico"
+          "https://pntkfhcoozzekqpuuahy.supabase.co/storage/v1/object/public/resource/avnexeed.ico"
         }
         alt="avnexsale-logo"
         width={30}

@@ -12,6 +12,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import serverI18n from "@/lib/i18n/server";
+import type { UserRole } from "@/lib/supabase/middleware";
 import { createSSRClient } from "@/lib/supabase/server";
 import { db } from "@/server/db";
 import type { User } from "@supabase/supabase-js";
@@ -31,6 +32,12 @@ import type { GetServerSidePropsContext } from "next";
 //   options?: Record<string, unknown>,
 // ) => string;
 
+/**
+ * Options for creating the inner tRPC context.
+ *
+ * @property user - The authenticated user from Supabase, or null if not authenticated
+ * @property t - The translation function from i18next for internationalization
+ */
 type CreateContextOptions = {
   user: User | null;
   t: TFunction;
@@ -149,16 +156,48 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
   return result;
 });
 
+/**
+ * Authentication middleware
+ *
+ * Verifies that a user is authenticated before allowing access to a procedure.
+ * Throws UNAUTHORIZED error if no user is present in the context.
+ *
+ * @throws {TRPCError} UNAUTHORIZED - When user is not authenticated
+ */
 const authMiddleware = t.middleware(async ({ ctx, next }) => {
-  if (!ctx.user) {
+  const { user } = ctx;
+
+  if (!user) {
     throw new TRPCError({ code: "UNAUTHORIZED", message: "User unauthorized" });
   }
 
   return await next({
-    ctx: {
-      ...ctx,
-      auth: ctx.user,
-    },
+    ctx: { ...ctx, auth: ctx.user },
+  });
+});
+
+/**
+ * Admin authorization middleware
+ *
+ * Verifies that the authenticated user has admin role before allowing access to a procedure.
+ * Should be used in combination with authMiddleware.
+ * Throws FORBIDDEN error if user does not have admin role.
+ *
+ * @throws {TRPCError} FORBIDDEN - When user is not an admin
+ */
+const adminMiddleware = t.middleware(async ({ ctx, next }) => {
+  const { user } = ctx;
+  const role = user?.app_metadata.role as UserRole;
+
+  if (role !== "admin") {
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "Admin access required",
+    });
+  }
+
+  return await next({
+    ctx: { ...ctx, auth: ctx.user },
   });
 });
 
@@ -182,3 +221,16 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
 export const protectedProcedure = t.procedure
   .use(timingMiddleware)
   .use(authMiddleware);
+
+/**
+ * Admin-only procedure
+ *
+ * Use this for queries or mutations that should ONLY be accessible to admin users.
+ * It verifies both authentication and admin role, guaranteeing `ctx.user` exists and has admin privileges.
+ *
+ * @see https://trpc.io/docs/procedures
+ */
+export const adminProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(authMiddleware)
+  .use(adminMiddleware);
