@@ -1,26 +1,6 @@
+import type { SettingsResponse } from "@/features/settings/types";
+import type { UserResponse } from "@/features/user/types";
 import { createContext } from "react";
-
-export type UserResponse = {
-  id: string;
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  avatar: string;
-  image: string;
-  providers: string;
-  role: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type SettingsResponse = {
-  id: string;
-  theme: string;
-  language: string;
-  currency: string;
-  notification: boolean;
-};
 
 export type AuthContextProps = {
   isLogin: boolean;

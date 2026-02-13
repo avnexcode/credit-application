@@ -10,11 +10,6 @@ const font = Poppins({
   weight: "400",
 });
 
-// const font = JetBrains_Mono({
-//   subsets: ["latin"],
-//   weight: ["400"],
-// });
-
 type AppProviderProps = React.ComponentProps<"main">;
 
 export const AppProvider = forwardRef<

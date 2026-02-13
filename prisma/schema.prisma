@@ -7,217 +7,14 @@ datasource db {
     provider = "postgresql"
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@index([name])
-}
-
-enum LoginProvider {
-    EMAIL  @map("email")
-    GOOGLE @map("google")
-
-    @@map("login_provider")
-}
-
-enum UserRole {
-    ADMIN    @map("admin")
-    CUSTOMER @map("customer")
-
-    @@map("user_role")
-}
-
-enum Theme {
-    LIGHT  @map("light")
-    DARK   @map("dark")
-    SYSTEM @map("system")
-
-    @@map("theme")
-}
-
-enum Language {
-    EN @map("en")
-    ID @map("id")
-
-    @@map("language")
-}
-
-enum Gender {
-    MALE   @map("male")
-    FEMALE @map("female")
-
-    @@map("gender")
-}
-
-enum MaritalStatus {
-    SINGLE   @map("single")
-    MARRIED  @map("married")
-    DIVORCED @map("divorced")
-    WIDOWED  @map("widowed")
-
-    @@map("marital_status")
-}
-
-enum EmploymentType {
-    CIVIL_SERVANT        @map("civil_servant")
-    PRIVATE_EMPLOYEE     @map("private_employee")
-    STATE_OWNED_EMPLOYEE @map("state_owned_employee")
-    CONTRACT_EMPLOYEE    @map("contract_employee")
-    FREELANCER           @map("freelancer")
-    ENTREPRENEUR         @map("entrepreneur")
-    BUSINESS_OWNER       @map("business_owner")
-    FARMER               @map("farmer")
-    FISHERMAN            @map("fisherman")
-    LABORER              @map("laborer")
-    TEACHER              @map("teacher")
-    LECTURER             @map("lecturer")
-    HEALTH_WORKER        @map("health_worker")
-    STUDENT              @map("student")
-    HOMEMAKER            @map("homemaker")
-    RETIRED              @map("retired")
-    UNEMPLOYED           @map("unemployed")
-
-    @@map("employment_type")
-}
-
-enum Relationship {
-    FATHER      @map("father")
-    MOTHER      @map("mother")
-    HUSBAND     @map("husband")
-    WIFE        @map("wife")
-    CHILD       @map("child")
-    SIBLING     @map("sibling")
-    GRANDFATHER @map("grandfather")
-    GRANDMOTHER @map("grandmother")
-    UNCLE       @map("uncle")
-    AUNT        @map("aunt")
-    COUSIN      @map("cousin")
-    GUARDIAN    @map("guardian")
-    OTHER       @map("other")
-
-    @@map("relationship")
-}
-
-enum LoanType {
-    PERSONAL     @map("personal")
-    MORTGAGE     @map("mortgage")
-    VEHICLE      @map("vehicle")
-    BUSINESS     @map("business")
-    MULTIPURPOSE @map("multipurpose")
-
-    @@map("loan_type")
-}
-
-enum ApplicationStatus {
-    DRAFT     @map("draft")
-    SUBMITTED @map("submitted")
-    REVIEWING @map("reviewing")
-    APPROVED  @map("approved")
-    REJECTED  @map("rejected")
-    DISBURSED @map("disbursed")
-    CANCELLED @map("cancelled")
-
-    @@map("application_status")
-}
-
-enum CreditScore {
-    ELIGIBLE     @map("eligible")
-    NOT_ELIGIBLE @map("not_eligible")
-
-    @@map("credit_score")
-}
-
-enum LoanStatus {
-    ACTIVE    @map("active")
-    COMPLETED @map("completed")
-    OVERDUE   @map("overdue")
-    DEFAULT   @map("default")
-
-    @@map("loan_status")
-}
-
-enum PaymentStatus {
-    ON_TIME @map("on_time")
-    LATE    @map("late")
-    PENDING @map("pending")
-
-    @@map("payment_status")
-}
-
-enum ReportType {
-    DAILY     @map("daily")
-    WEEKLY    @map("weekly")
-    MONTHLY   @map("monthly")
-    QUARTERLY @map("quarterly")
-    YEARLY    @map("yearly")
-    CUSTOM    @map("custom")
-
-    @@map("report_type")
-}
-
-enum NotificationType {
-    SYSTEM   @map("system")
-    PERSONAL @map("personal")
-
-    @@map("notification_type")
-}
-
-enum NotificationPriority {
-    LOW    @map("low")
-    NORMAL @map("normal")
-    HIGH   @map("high")
-    URGENT @map("urgent")
-
-    @@map("notification_priority")
-}
-
-enum QuestionType {
-    SINGLE_CHOICE   @map("single_choice")
-    MULTIPLE_CHOICE @map("multiple_choice")
-    YES_NO          @map("yes_no")
-    TRUE_FALSE      @map("true_false")
-    RATING          @map("rating")
-    SCALE           @map("scale")
-    PERCENTAGE      @map("percentage")
-
-    @@map("question_type")
-}
-
-enum QuestionCategory {
-    PERSONAL       @map("personal")
-    IDENTITY       @map("identity")
-    CONTACT        @map("contact")
-    ADDRESS        @map("address")
-    EMPLOYMENT     @map("employment")
-    INCOME         @map("income")
-    EXPENSE        @map("expense")
-    FINANCIAL      @map("financial")
-    BUSINESS       @map("business")
-    COLLATERAL     @map("collateral")
-    REFERENCE      @map("reference")
-    EMERGENCY      @map("emergency")
-    EDUCATION      @map("education")
-    FAMILY         @map("family")
-    LOAN_PURPOSE   @map("loan_purpose")
-    CREDIT_HISTORY @map("credit_history")
-    ASSETS         @map("assets")
-    LIABILITIES    @map("liabilities")
-    BANK_ACCOUNT   @map("bank_account")
-    OTHER          @map("other")
-
-    @@map("question_category")
-}
-
 model User {
-    id       String   @id @default(uuid()) @map("id") @db.VarChar(56)
-    username String   @unique @map("username") @db.VarChar(50)
-    email    String   @unique @map("email") @db.VarChar(150)
-    avatar   String?  @map("avatar")
-    image    String?  @map("image")
-    role     UserRole @default(ADMIN) @map("role")
+    id        String          @id @default(uuid()) @map("id") @db.VarChar(56)
+    username  String          @unique @map("username") @db.VarChar(50)
+    email     String          @unique @map("email") @db.VarChar(150)
+    avatar    String?         @map("avatar")
+    image     String?         @map("image")
+    providers LoginProvider[] @default([]) @map("providers")
+    role      UserRole        @default(ADMIN) @map("role")
 
     settings      Settings?
     permissions   Permissions?
@@ -374,7 +171,7 @@ model Customer {
 
     userId             String?             @unique @map("user_id") @db.VarChar(56)
     user               User?               @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-    document           Document?
+    documents          Documents?
     bankAccounts       BankAccount[]
     guarantors         Guarantor[]
     creditApplications CreditApplication[]
@@ -447,7 +244,7 @@ model Guarantor {
 
     customerId         String              @map("customer_id") @db.VarChar(56)
     customer           Customer            @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    document           Document?
+    documents          Documents?
     creditApplications CreditApplication[]
 
     createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
@@ -473,7 +270,7 @@ model Guarantor {
     @@map("guarantors")
 }
 
-model Document {
+model Documents {
     id            String  @id @default(uuid()) @map("id") @db.VarChar(56)
     identityCard  String? @map("identity_card")
     familyCard    String? @map("family_card")
@@ -794,4 +591,199 @@ model Report {
     @@index([createdAt], name: "idx_report_created_at")
     @@index([updatedAt], name: "idx_report_updated_at")
     @@map("reports")
+}
+
+enum LoginProvider {
+    EMAIL  @map("email")
+    GOOGLE @map("google")
+
+    @@map("login_provider")
+}
+
+enum UserRole {
+    ADMIN    @map("admin")
+    CUSTOMER @map("customer")
+
+    @@map("user_role")
+}
+
+enum Theme {
+    LIGHT  @map("light")
+    DARK   @map("dark")
+    SYSTEM @map("system")
+
+    @@map("theme")
+}
+
+enum Language {
+    EN @map("en")
+    ID @map("id")
+
+    @@map("language")
+}
+
+enum Gender {
+    MALE   @map("male")
+    FEMALE @map("female")
+
+    @@map("gender")
+}
+
+enum MaritalStatus {
+    SINGLE   @map("single")
+    MARRIED  @map("married")
+    DIVORCED @map("divorced")
+    WIDOWED  @map("widowed")
+
+    @@map("marital_status")
+}
+
+enum EmploymentType {
+    CIVIL_SERVANT        @map("civil_servant")
+    PRIVATE_EMPLOYEE     @map("private_employee")
+    STATE_OWNED_EMPLOYEE @map("state_owned_employee")
+    CONTRACT_EMPLOYEE    @map("contract_employee")
+    FREELANCER           @map("freelancer")
+    ENTREPRENEUR         @map("entrepreneur")
+    BUSINESS_OWNER       @map("business_owner")
+    FARMER               @map("farmer")
+    FISHERMAN            @map("fisherman")
+    LABORER              @map("laborer")
+    TEACHER              @map("teacher")
+    LECTURER             @map("lecturer")
+    HEALTH_WORKER        @map("health_worker")
+    STUDENT              @map("student")
+    HOMEMAKER            @map("homemaker")
+    RETIRED              @map("retired")
+    UNEMPLOYED           @map("unemployed")
+
+    @@map("employment_type")
+}
+
+enum Relationship {
+    FATHER      @map("father")
+    MOTHER      @map("mother")
+    HUSBAND     @map("husband")
+    WIFE        @map("wife")
+    CHILD       @map("child")
+    SIBLING     @map("sibling")
+    GRANDFATHER @map("grandfather")
+    GRANDMOTHER @map("grandmother")
+    UNCLE       @map("uncle")
+    AUNT        @map("aunt")
+    COUSIN      @map("cousin")
+    GUARDIAN    @map("guardian")
+    OTHER       @map("other")
+
+    @@map("relationship")
+}
+
+enum LoanType {
+    PERSONAL     @map("personal")
+    MORTGAGE     @map("mortgage")
+    VEHICLE      @map("vehicle")
+    BUSINESS     @map("business")
+    MULTIPURPOSE @map("multipurpose")
+
+    @@map("loan_type")
+}
+
+enum ApplicationStatus {
+    DRAFT     @map("draft")
+    SUBMITTED @map("submitted")
+    REVIEWING @map("reviewing")
+    APPROVED  @map("approved")
+    REJECTED  @map("rejected")
+    DISBURSED @map("disbursed")
+    CANCELLED @map("cancelled")
+
+    @@map("application_status")
+}
+
+enum CreditScore {
+    ELIGIBLE     @map("eligible")
+    NOT_ELIGIBLE @map("not_eligible")
+
+    @@map("credit_score")
+}
+
+enum LoanStatus {
+    ACTIVE    @map("active")
+    COMPLETED @map("completed")
+    OVERDUE   @map("overdue")
+    DEFAULT   @map("default")
+
+    @@map("loan_status")
+}
+
+enum PaymentStatus {
+    ON_TIME @map("on_time")
+    LATE    @map("late")
+    PENDING @map("pending")
+
+    @@map("payment_status")
+}
+
+enum ReportType {
+    DAILY     @map("daily")
+    WEEKLY    @map("weekly")
+    MONTHLY   @map("monthly")
+    QUARTERLY @map("quarterly")
+    YEARLY    @map("yearly")
+    CUSTOM    @map("custom")
+
+    @@map("report_type")
+}
+
+enum NotificationType {
+    SYSTEM   @map("system")
+    PERSONAL @map("personal")
+
+    @@map("notification_type")
+}
+
+enum NotificationPriority {
+    LOW    @map("low")
+    NORMAL @map("normal")
+    HIGH   @map("high")
+    URGENT @map("urgent")
+
+    @@map("notification_priority")
+}
+
+enum QuestionType {
+    SINGLE_CHOICE   @map("single_choice")
+    MULTIPLE_CHOICE @map("multiple_choice")
+    YES_NO          @map("yes_no")
+    TRUE_FALSE      @map("true_false")
+    RATING          @map("rating")
+    SCALE           @map("scale")
+    PERCENTAGE      @map("percentage")
+
+    @@map("question_type")
+}
+
+enum QuestionCategory {
+    PERSONAL       @map("personal")
+    IDENTITY       @map("identity")
+    CONTACT        @map("contact")
+    ADDRESS        @map("address")
+    EMPLOYMENT     @map("employment")
+    INCOME         @map("income")
+    EXPENSE        @map("expense")
+    FINANCIAL      @map("financial")
+    BUSINESS       @map("business")
+    COLLATERAL     @map("collateral")
+    REFERENCE      @map("reference")
+    EMERGENCY      @map("emergency")
+    EDUCATION      @map("education")
+    FAMILY         @map("family")
+    LOAN_PURPOSE   @map("loan_purpose")
+    CREDIT_HISTORY @map("credit_history")
+    ASSETS         @map("assets")
+    LIABILITIES    @map("liabilities")
+    BANK_ACCOUNT   @map("bank_account")
+    OTHER          @map("other")
+
+    @@map("question_category")
 }

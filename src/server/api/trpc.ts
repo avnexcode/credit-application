@@ -165,9 +165,7 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
  * @throws {TRPCError} UNAUTHORIZED - When user is not authenticated
  */
 const authMiddleware = t.middleware(async ({ ctx, next }) => {
-  const { user } = ctx;
-
-  if (!user) {
+  if (!ctx.user) {
     throw new TRPCError({ code: "UNAUTHORIZED", message: "User unauthorized" });
   }
 
@@ -186,8 +184,7 @@ const authMiddleware = t.middleware(async ({ ctx, next }) => {
  * @throws {TRPCError} FORBIDDEN - When user is not an admin
  */
 const adminMiddleware = t.middleware(async ({ ctx, next }) => {
-  const { user } = ctx;
-  const role = user?.app_metadata.role as UserRole;
+  const role = ctx.user?.app_metadata.role as UserRole;
 
   if (role !== "admin") {
     throw new TRPCError({

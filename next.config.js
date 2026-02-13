@@ -5,8 +5,21 @@ import "./src/configs/env.js";
 const config = {
   reactStrictMode: true,
   i18n: {
-    locales: ["en"],
     defaultLocale: "en",
+    locales: ["en", "id"],
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pntkfhcoozzekqpuuahy.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
   },
 };
 

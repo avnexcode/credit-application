@@ -299,26 +299,26 @@
   "components": {
     "sidebar": {
       "groups": {
-        "application": "application"
+        "application": "Application",
+        "management": "Management",
+        "system": "System"
       },
       "items": {
-        "dashboard": "dashboard",
-        "store": "store",
-        "warehouse": "warehouse",
-        "cashier": "cashier",
-        "member": "member",
-        "order": "order",
-        "transaction": "transaction",
-        "return": "return",
-        "tables": "tables",
-        "profile": "profile",
-        "resetPassword": "reset password",
-        "settings": "settings",
-        "employee": "employee",
-        "category": "category",
-        "product": "product",
-        "prompt": "prompt",
-        "supplier": "supplier"
+        "dashboard": "Dashboard",
+        "customer": "Customers",
+        "guarantor": "Guarantors",
+        "creditApplication": "Credit Applications",
+        "creditAssessment": "Credit Assessment",
+        "loanReference": "Loan References",
+        "loanBalance": "Loan Balances",
+        "paymentRecord": "Payment Records",
+        "interviewQuestion": "Interview Questions",
+        "bankAccount": "Bank Accounts",
+        "document": "Documents",
+        "report": "Reports",
+        "notification": "Notifications",
+        "admin": "Admins",
+        "settings": "Settings"
       }
     }
   },

@@ -1,4 +1,3 @@
-import { postRouter } from "@/server/api/routers/post";
 import {
   createCallerFactory,
   createTRPCContext,
@@ -6,9 +5,12 @@ import {
 } from "@/server/api/trpc";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import type { GetServerSidePropsContext } from "next";
+import { authRouter, settingsRouter, userRouter } from "./routers";
 
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  auth: authRouter,
+  settings: settingsRouter,
+  user: userRouter,
 });
 
 export type AppRouter = typeof appRouter;

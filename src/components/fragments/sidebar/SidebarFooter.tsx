@@ -26,7 +26,7 @@ export const SidebarFooter = () => {
   const { user } = useAuth();
   const imageProfile = user?.image ?? user?.avatar;
   const firstNameLetter = capitalizeWords(
-    getFirstLetters(String(user?.name), 1),
+    getFirstLetters(String(user?.username), 1),
   );
   return (
     <SidebarFooterComponent>
