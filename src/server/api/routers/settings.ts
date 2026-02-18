@@ -5,7 +5,7 @@ import { updateSettingsRequest } from "@/server/validations";
 import z from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
-const idValidation = z.string().min(1).uuid();
+const idValidation = z.uuid().min(1);
 
 export const settingsRouter = createTRPCRouter({
   getByUser: protectedProcedure.query(

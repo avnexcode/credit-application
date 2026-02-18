@@ -43,7 +43,7 @@ export const InputSelect = <T extends FieldValues, TName extends Path<T>>({
       render={({ field, fieldState }) => (
         <Field
           data-invalid={fieldState.invalid}
-          className={cn("w-full xl:max-w-[180px]", className)}
+          className={cn("w-full", className)}
         >
           <FieldLabel htmlFor={field.name} className="capitalize">
             {label}
@@ -54,14 +54,18 @@ export const InputSelect = <T extends FieldValues, TName extends Path<T>>({
             defaultValue={field.value}
             value={field.value}
           >
-            <SelectTrigger id={field.name} aria-invalid={fieldState.invalid}>
+            <SelectTrigger
+              id={field.name}
+              aria-invalid={fieldState.invalid}
+              className="capitalize"
+            >
               <SelectValue
                 placeholder={t("forms.placeholders.select", {
                   field: label,
                 })}
               />
             </SelectTrigger>
-            <SelectContent className="w-[var(--radix-select-trigger-width)]">
+            <SelectContent className="w-(--radix-select-trigger-width)">
               {renderElements({
                 of: options,
                 keyExtractor: (option, index) => `${option.value}-${index}`,

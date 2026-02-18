@@ -2,24 +2,30 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { inputHandle, removeNumberFormatting } from "@/utils";
+import { forwardRef } from "react";
 import type { FieldValues, Path } from "react-hook-form";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Skeleton } from "../ui/skeleton";
 
-type InputStringNumberProps<T extends FieldValues> = {
-  name: Path<T>;
-  label?: string;
-  required?: boolean;
-  className?: string;
-};
+type InputStringNumberProps<T extends FieldValues> =
+  React.ComponentPropsWithoutRef<"input"> & {
+    name: Path<T>;
+    label?: string;
+    required?: boolean;
+    className?: string;
+  };
 
-export const InputStringNumber = <T extends FieldValues>({
-  name,
-  label,
-  required,
-  className,
-}: InputStringNumberProps<T>) => {
+const InputStringNumberInner = <T extends FieldValues>(
+  {
+    name,
+    label,
+    required,
+    className,
+    ...inputProps
+  }: InputStringNumberProps<T>,
+  ref: React.ForwardedRef<HTMLInputElement>,
+) => {
   const { t } = useTranslation();
   const form = useFormContext<T>();
 
@@ -35,23 +41,31 @@ export const InputStringNumber = <T extends FieldValues>({
           </FieldLabel>
           <Input
             {...field}
+            {...inputProps}
+            ref={ref}
             id={field.name}
             type="text"
             aria-invalid={fieldState.invalid}
-            placeholder={t("forms.placeholders.input", {
-              field: label,
-            })}
+            placeholder={
+              inputProps.placeholder ??
+              t("forms.placeholders.input", { field: label })
+            }
             onChange={(e) => {
               inputHandle("onChange", "number", e);
               const cleanValue = removeNumberFormatting(e.target.value);
               field.onChange(cleanValue || "");
+              inputProps.onChange?.(e);
             }}
             onPaste={(e) => {
               inputHandle("onPaste", "number", e);
               const cleanValue = removeNumberFormatting(e.currentTarget.value);
               field.onChange(cleanValue || "");
+              inputProps.onPaste?.(e);
             }}
-            onBlur={field.onBlur}
+            onBlur={(e) => {
+              field.onBlur();
+              inputProps.onBlur?.(e);
+            }}
           />
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
         </Field>
@@ -59,6 +73,14 @@ export const InputStringNumber = <T extends FieldValues>({
     />
   );
 };
+
+export const InputStringNumber = forwardRef(InputStringNumberInner) as <
+  T extends FieldValues,
+>(
+  props: InputStringNumberProps<T> & {
+    ref?: React.ForwardedRef<HTMLInputElement>;
+  },
+) => React.ReactElement;
 
 export const InputStringNumberSkeleton = () => {
   return (

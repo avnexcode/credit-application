@@ -131,6 +131,17 @@ export const createSidebarMenu = (
       menu: [
         {
           type: "Single",
+          title: t(`${sidebarItems}.admin`),
+          url: "/dashboard/admin",
+          icon: "ShieldCheck",
+          active: [
+            "/dashboard/admin/create",
+            "/dashboard/admin/:id/view",
+            "/dashboard/admin/:id/edit",
+          ],
+        },
+        {
+          type: "Single",
           title: t(`${sidebarItems}.interviewQuestion`),
           url: "/dashboard/interview-question",
           icon: "MessageSquare",
@@ -174,24 +185,17 @@ export const createSidebarMenu = (
       menu: [
         {
           type: "Single",
-          title: t(`${sidebarItems}.admin`),
-          url: "/dashboard/admin",
-          icon: "ShieldCheck",
-          active: [
-            "/dashboard/admin/create",
-            "/dashboard/admin/:id/view",
-            "/dashboard/admin/:id/edit",
-          ],
+          title: t(`${sidebarItems}.profile`),
+          url: "/profile",
+          icon: "User",
+          active: [],
         },
         {
           type: "Single",
           title: t(`${sidebarItems}.settings`),
-          url: "/dashboard/settings",
+          url: "/settings",
           icon: "Settings",
-          active: [
-            "/dashboard/settings/profile",
-            "/dashboard/settings/preferences",
-          ],
+          active: [],
         },
       ],
     },

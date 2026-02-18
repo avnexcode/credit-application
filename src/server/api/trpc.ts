@@ -78,8 +78,12 @@ export const createTRPCContext = async (
   const { data } = await supabaseServerClient.auth.getUser();
 
   const language =
-    _opts.req.headers["accept-language"]?.split(",")[0]?.split("-")[0] ??
+    // prefer explicit language cookie (some clients use 'language')
+    _opts.req.cookies.language ??
+    // fallback to i18next cookie name (common default)
     _opts.req.cookies.i18next ??
+    // finally fall back to Accept-Language header
+    _opts.req.headers["accept-language"]?.split(",")[0]?.split("-")[0] ??
     "en";
 
   await serverI18n.changeLanguage(language);

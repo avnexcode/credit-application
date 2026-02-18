@@ -1,24 +1,24 @@
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { forwardRef } from "react";
 import type { FieldValues, Path } from "react-hook-form";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Skeleton } from "../ui/skeleton";
 
-type InputTextProps<T extends FieldValues> = {
-  name: Path<T>;
-  label?: string;
-  required?: boolean;
-  className?: string;
-};
+type InputTextProps<T extends FieldValues> =
+  React.ComponentPropsWithoutRef<"input"> & {
+    name: Path<T>;
+    label?: string;
+    required?: boolean;
+    className?: string;
+  };
 
-export const InputText = <T extends FieldValues>({
-  name,
-  label,
-  required,
-  className,
-}: InputTextProps<T>) => {
+const InputTextInner = <T extends FieldValues>(
+  { name, label, required, className, ...inputProps }: InputTextProps<T>,
+  ref: React.ForwardedRef<HTMLInputElement>,
+) => {
   const { t } = useTranslation();
   const form = useFormContext<T>();
 
@@ -34,12 +34,15 @@ export const InputText = <T extends FieldValues>({
           </FieldLabel>
           <Input
             {...field}
+            {...inputProps}
+            ref={ref}
             id={field.name}
-            type="text"
+            type={inputProps.type ?? "text"}
             aria-invalid={fieldState.invalid}
-            placeholder={t("forms.placeholders.input", {
-              field: label,
-            })}
+            placeholder={
+              inputProps.placeholder ??
+              t("forms.placeholders.input", { field: label })
+            }
           />
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
         </Field>
@@ -47,6 +50,10 @@ export const InputText = <T extends FieldValues>({
     />
   );
 };
+
+export const InputText = forwardRef(InputTextInner) as <T extends FieldValues>(
+  props: InputTextProps<T> & { ref?: React.ForwardedRef<HTMLInputElement> },
+) => React.ReactElement;
 
 export const InputTextSkeleton = () => {
   return (

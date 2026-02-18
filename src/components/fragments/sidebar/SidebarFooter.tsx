@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks";
 import { capitalizeWords, getFirstLetters } from "@/utils";
-import Link from "next/link";
 
 const useLogout = () => {
   const handleLogout = () => console.log("Sign Out");
@@ -25,6 +24,7 @@ export const SidebarFooter = () => {
   const { handleLogout } = useLogout();
   const { user } = useAuth();
   const imageProfile = user?.image ?? user?.avatar;
+
   const firstNameLetter = capitalizeWords(
     getFirstLetters(String(user?.username), 1),
   );
@@ -40,12 +40,12 @@ export const SidebarFooter = () => {
                   <AvatarImage src={imageProfile ?? ""} />
                   <AvatarFallback>{firstNameLetter}</AvatarFallback>
                 </Avatar>
-                <span className="transition-all duration-300 ease-in-out group-data-[state=collapsed]:pointer-events-none group-data-[state=collapsed]:translate-x-[-10px] group-data-[state=collapsed]:opacity-0">
+                <span className="transition-all duration-300 ease-in-out group-data-[state=collapsed]:pointer-events-none group-data-[state=collapsed]:-translate-x-2.5 group-data-[state=collapsed]:opacity-0">
                   {user?.username}
                 </span>
                 <Icon
                   name={"ChevronUp"}
-                  className="ml-auto transition-all duration-300 ease-in-out group-data-[state=collapsed]:pointer-events-none group-data-[state=collapsed]:translate-x-[-10px] group-data-[state=collapsed]:opacity-0"
+                  className="ml-auto transition-all duration-300 ease-in-out group-data-[state=collapsed]:pointer-events-none group-data-[state=collapsed]:-translate-x-2.5 group-data-[state=collapsed]:opacity-0"
                 />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
@@ -53,18 +53,6 @@ export const SidebarFooter = () => {
               side="top"
               className="min-w-(--radix-dropdown-menu-trigger-width)"
             >
-              <DropdownMenuItem asChild>
-                <Link href={"/profile"}>
-                  <Icon name={"User"} className="mr-2" />
-                  <span>Profile</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={"/settings"}>
-                  <Icon name={"Settings"} className="mr-2" />
-                  <span>Settings</span>
-                </Link>
-              </DropdownMenuItem>
               <DropdownMenuItem onClick={handleLogout}>
                 <Icon name={"LogOut"} className="mr-2" />
                 <span>Logout</span>

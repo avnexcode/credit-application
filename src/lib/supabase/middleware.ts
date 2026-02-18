@@ -6,8 +6,8 @@ import serverI18n from "../i18n/server";
 const PATHS = {
   DEFAULT_REDIRECT: "/dashboard",
   AUTH_REDIRECT: "/login",
-  EMPLOYEE_DEFAULT_REDIRECT: "/cashier",
-  PUBLIC_ROUTES: ["/", "/login", "/register"],
+  CUSTOMER_DEFAULT_REDIRECT: "/",
+  PUBLIC_ROUTES: ["/login", "/register"],
 };
 
 export type UserRole = "admin" | "customer";
@@ -81,7 +81,7 @@ export const updateSession = async (
   if (user && role !== "admin" && isAdminRoute) {
     // console.log({ diEwe: "bukan admin" });
     const url = request.nextUrl.clone();
-    url.pathname = PATHS.EMPLOYEE_DEFAULT_REDIRECT;
+    url.pathname = PATHS.CUSTOMER_DEFAULT_REDIRECT;
     return NextResponse.redirect(url);
   } else {
     // console.log({ diEwe: "admin" });

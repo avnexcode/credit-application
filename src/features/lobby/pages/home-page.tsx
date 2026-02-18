@@ -1,4 +1,5 @@
 import { PageContainer, SectionContainer } from "@/components/layouts";
+import Link from "next/link";
 
 export const HomePage = () => {
   return (
@@ -10,7 +11,9 @@ export const HomePage = () => {
               Hello <span className="text-[hsl(280,100%,70%)]">World</span> App
             </h1>
 
-            <p className="text-2xl text-white">Jembuat</p>
+            <Link href={"/dashboard"} className="text-2xl text-white">
+              Dashboard
+            </Link>
           </div>
         </main>
       </SectionContainer>

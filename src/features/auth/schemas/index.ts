@@ -5,7 +5,7 @@ import { createEmailValidation } from "./email-schema";
 import { createPasswordValidation } from "./password-schema";
 
 export const createRegisterFormSchema = (t: TFunction = translator) => {
-  const nameField = t("models.user.fields.name");
+  const nameField = t("models.customer.fields.fullName");
   return z
     .object({
       name: z

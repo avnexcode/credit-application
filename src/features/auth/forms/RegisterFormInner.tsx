@@ -34,7 +34,7 @@ export const RegisterFormInner = ({
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
             <FieldLabel htmlFor={field.name} className="capitalize">
-              {t("models.user.fields.name")}
+              {t("models.customer.fields.fullName")}
             </FieldLabel>
             <Input
               {...field}
@@ -42,7 +42,7 @@ export const RegisterFormInner = ({
               type="text"
               aria-invalid={fieldState.invalid}
               placeholder={t("forms.placeholders.input", {
-                field: t("models.user.fields.name"),
+                field: t("models.customer.fields.fullName"),
               })}
             />
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

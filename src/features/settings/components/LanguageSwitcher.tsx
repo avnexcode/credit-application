@@ -30,7 +30,7 @@ export const LanguageSwitcher = () => {
       onValueChange={handleLanguageChange}
       disabled={isUpdateSettingsPending}
     >
-      <SelectTrigger className="w-[170px] gap-2 capitalize">
+      <SelectTrigger className="w-42.5 gap-2 capitalize">
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>

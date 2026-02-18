@@ -7,3 +7,4 @@ export * from "./InputStringNumber";
 export * from "./InputText";
 export * from "./SelectPagination";
 export * from "./SelectSearch";
+export * from "./InputDate";

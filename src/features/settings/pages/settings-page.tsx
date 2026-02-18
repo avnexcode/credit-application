@@ -21,18 +21,21 @@ export const SettingsPage = () => {
   const { t } = useTranslation();
 
   return (
-    <PageContainer title="Settings">
+    <PageContainer title={t("pages.settings.title")}>
       <SectionContainer padded>
-        <DashboardLayout title="Settings" className="items-center space-y-20">
+        <DashboardLayout
+          title={t("pages.settings.title")}
+          className="items-center space-y-20"
+        >
           <SettingsSection
-            title="General"
-            caption="Basic settings for your account"
+            title={t("pages.settings.general")}
+            caption={t("pages.settings.caption")}
           >
             {" "}
             {/* Language Selector */}
             <SettingsCard
-              label={t("pages.settings.general.language.title")}
-              caption={t("pages.settings.general.language.caption")}
+              label={t("pages.settings.settingsCard.language.label")}
+              caption={t("pages.settings.settingsCard.language.caption")}
               icon="Globe"
             >
               <LanguageSwitcher />
@@ -41,13 +44,13 @@ export const SettingsPage = () => {
           </SettingsSection>
 
           <SettingsSection
-            title="Appearance"
-            caption="Customize how the app looks"
+            title={t("pages.settings.settingsSection.appearance.title")}
+            caption={t("pages.settings.settingsSection.appearance.caption")}
           >
             {/* Theme Selector */}
             <SettingsCard
-              label="Theme"
-              caption="Choose your color theme"
+              label={t("pages.settings.settingsCard.theme.label")}
+              caption={t("pages.settings.settingsCard.theme.caption")}
               icon="Palette"
             >
               <ThemeSwitcher />
@@ -55,13 +58,15 @@ export const SettingsPage = () => {
           </SettingsSection>
 
           <SettingsSection
-            title="Notifications"
-            caption="Manage your notification preferences"
+            title={t("pages.settings.settingsSection.notifications.title")}
+            caption={t("pages.settings.settingsSection.notifications.caption")}
           >
             {/* Theme Selector */}
             <SettingsCard
-              label="Push Notifications"
-              caption="Receive notifications about updates"
+              label={t("pages.settings.settingsCard.pushNotifications.label")}
+              caption={t(
+                "pages.settings.settingsCard.pushNotifications.caption",
+              )}
               icon="Bell"
             >
               <div className="">

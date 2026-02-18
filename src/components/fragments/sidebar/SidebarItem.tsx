@@ -27,7 +27,7 @@ export const SidebarItem = (props: SidebarItemProps) => {
           <SidebarMenuButton
             asChild
             isActive={activeLink}
-            className="py-[22px] capitalize"
+            className="py-5.5 capitalize"
           >
             <Link href={props.url ?? ""}>
               <Icon name={props.icon} className="mr-2" />

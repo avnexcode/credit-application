@@ -90,13 +90,11 @@
     "user": {
       "title": "pengguna",
       "fields": {
-        "name": "nama",
         "username": "nama pengguna",
         "email": "email",
-        "phone": "telepon",
         "avatar": "avatar",
         "image": "gambar",
-        "providers": "penyedia",
+        "providers": "penyedia login",
         "role": "peran",
         "createdAt": "dibuat pada",
         "updatedAt": "diperbarui pada"
@@ -107,32 +105,376 @@
       "fields": {
         "theme": "tema",
         "language": "bahasa",
-        "currency": "mata uang",
         "notification": "notifikasi",
         "createdAt": "dibuat pada",
         "updatedAt": "diperbarui pada"
       }
     },
     "permissions": {
-      "title": "izin",
+      "title": "izin akses",
       "fields": {
-        "createStore": "buat toko",
-        "updateStore": "perbarui toko",
-        "deleteStore": "hapus toko",
-        "createWarehouse": "buat gudang",
-        "updateWarehouse": "perbarui gudang",
-        "deleteWarehouse": "hapus gudang",
-        "createCategory": "buat kategori",
-        "updateCategory": "perbarui kategori",
-        "deleteCategory": "hapus kategori",
-        "createProduct": "buat produk",
-        "updateProduct": "perbarui produk",
-        "deleteProduct": "hapus produk",
-        "deleteNotification": "hapus notifikasi",
         "createReport": "buat laporan",
         "createdAt": "dibuat pada",
         "updatedAt": "diperbarui pada"
       }
+    },
+    "notification": {
+      "title": "notifikasi",
+      "fields": {
+        "type": "tipe",
+        "category": "kategori",
+        "title": "judul",
+        "message": "pesan",
+        "actionUrl": "url tindakan",
+        "actionLabel": "label tindakan",
+        "priority": "prioritas",
+        "isRead": "sudah dibaca",
+        "readAt": "dibaca pada",
+        "relatedType": "tipe terkait",
+        "relatedId": "id terkait",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "admin": {
+      "title": "admin",
+      "fields": {
+        "fullName": "nama lengkap",
+        "nationalId": "nomor KTP",
+        "birthPlace": "tempat lahir",
+        "birthDate": "tanggal lahir",
+        "gender": "jenis kelamin",
+        "age": "usia",
+        "phone": "nomor telepon",
+        "email": "email",
+        "address": "alamat",
+        "maritalStatus": "status pernikahan",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "customer": {
+      "title": "nasabah",
+      "fields": {
+        "fullName": "nama lengkap",
+        "nationalId": "nomor KTP",
+        "birthPlace": "tempat lahir",
+        "birthDate": "tanggal lahir",
+        "gender": "jenis kelamin",
+        "age": "usia",
+        "phone": "nomor telepon",
+        "email": "email",
+        "address": "alamat",
+        "maritalStatus": "status pernikahan",
+        "employmentType": "jenis pekerjaan",
+        "employmentName": "nama tempat kerja",
+        "employmentPeriod": "masa kerja",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "bankAccount": {
+      "title": "rekening bank",
+      "fields": {
+        "accountName": "nama rekening",
+        "accountNumber": "nomor rekening",
+        "isPrimary": "rekening utama",
+        "isVerified": "terverifikasi",
+        "isActive": "aktif",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "guarantor": {
+      "title": "penjamin",
+      "fields": {
+        "fullName": "nama lengkap",
+        "nationalId": "nomor KTP",
+        "birthPlace": "tempat lahir",
+        "birthDate": "tanggal lahir",
+        "gender": "jenis kelamin",
+        "address": "alamat",
+        "phone": "nomor telepon",
+        "email": "email",
+        "maritalStatus": "status pernikahan",
+        "employmentType": "jenis pekerjaan",
+        "employmentName": "nama tempat kerja",
+        "employmentPeriod": "masa kerja",
+        "relationship": "hubungan",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "documents": {
+      "title": "dokumen",
+      "fields": {
+        "identityCard": "kartu tanda penduduk",
+        "familyCard": "kartu keluarga",
+        "salarySlip": "slip gaji",
+        "bankStatement": "rekening koran",
+        "selfie": "foto selfie",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "creditApplication": {
+      "title": "pengajuan kredit",
+      "fields": {
+        "applicationNumber": "nomor pengajuan",
+        "loanType": "jenis pinjaman",
+        "loanAmount": "jumlah pinjaman",
+        "loanPeriod": "tenor pinjaman",
+        "loanPurpose": "tujuan pinjaman",
+        "collateralCertificate": "sertifikat jaminan",
+        "collateralValue": "nilai jaminan",
+        "monthlyIncome": "pendapatan bulanan",
+        "incomeProof": "bukti pendapatan",
+        "monthlyExpenses": "pengeluaran bulanan",
+        "surplus": "surplus",
+        "status": "status",
+        "submittedAt": "diajukan pada",
+        "reviewedAt": "ditinjau pada",
+        "approvedAt": "disetujui pada",
+        "rejectedAt": "ditolak pada",
+        "rejectionReason": "alasan penolakan",
+        "disbursedAt": "dicairkan pada",
+        "notes": "catatan",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "creditWorthiness": {
+      "title": "kelayakan kredit",
+      "fields": {
+        "creditScore": "skor kredit",
+        "assessmentResult": "hasil penilaian",
+        "assessedAt": "dinilai pada",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "interviewQuestion": {
+      "title": "pertanyaan wawancara",
+      "fields": {
+        "questionText": "pertanyaan",
+        "questionType": "tipe pertanyaan",
+        "category": "kategori",
+        "isRequired": "wajib diisi",
+        "isActive": "aktif",
+        "orderNumber": "urutan",
+        "options": "pilihan jawaban",
+        "placeholder": "placeholder",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "interviewAnswer": {
+      "title": "jawaban wawancara",
+      "fields": {
+        "answerText": "jawaban",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "loanReference": {
+      "title": "referensi pinjaman",
+      "fields": {
+        "loanNumber": "nomor pinjaman",
+        "principalAmount": "pokok pinjaman",
+        "interestRate": "suku bunga",
+        "loanPeriod": "tenor pinjaman",
+        "monthlyPayment": "angsuran bulanan",
+        "totalPayment": "total pembayaran",
+        "status": "status",
+        "startDate": "tanggal mulai",
+        "endDate": "tanggal berakhir",
+        "nextPaymentDate": "tanggal pembayaran berikutnya",
+        "overdueCount": "jumlah keterlambatan",
+        "lateFeeAmount": "denda keterlambatan",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "loanBalance": {
+      "title": "saldo pinjaman",
+      "fields": {
+        "principalRemaining": "sisa pokok",
+        "interestRemaining": "sisa bunga",
+        "totalRemaining": "total sisa",
+        "principalPaid": "pokok terbayar",
+        "interestPaid": "bunga terbayar",
+        "totalPaid": "total terbayar",
+        "lateFeeTotal": "total denda",
+        "lastPaymentDate": "tanggal pembayaran terakhir",
+        "lastPaymentAmount": "jumlah pembayaran terakhir",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "paymentRecord": {
+      "title": "catatan pembayaran",
+      "fields": {
+        "installmentNumber": "angsuran ke",
+        "dueDate": "jatuh tempo",
+        "paymentDate": "tanggal pembayaran",
+        "totalAmount": "total tagihan",
+        "principalAmount": "pokok",
+        "interestAmount": "bunga",
+        "paidAmount": "jumlah terbayar",
+        "lateFeeAmount": "denda keterlambatan",
+        "status": "status",
+        "daysOverdue": "hari keterlambatan",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    },
+    "report": {
+      "title": "laporan",
+      "fields": {
+        "reportType": "jenis laporan",
+        "title": "judul",
+        "description": "deskripsi",
+        "startDate": "tanggal mulai",
+        "endDate": "tanggal berakhir",
+        "fileUrl": "url file",
+        "createdAt": "dibuat pada",
+        "updatedAt": "diperbarui pada"
+      }
+    }
+  },
+  "enums": {
+    "theme": {
+      "light": "terang",
+      "dark": "gelap",
+      "system": "sistem"
+    },
+    "language": {
+      "en": "Inggris",
+      "id": "Indonesia"
+    },
+    "gender": {
+      "male": "laki-laki",
+      "female": "perempuan"
+    },
+    "maritalStatus": {
+      "single": "belum menikah",
+      "married": "menikah",
+      "divorced": "cerai",
+      "widowed": "janda / duda"
+    },
+    "employmentType": {
+      "civilServant": "pegawai negeri sipil",
+      "privateEmployee": "karyawan swasta",
+      "stateOwnedEmployee": "karyawan BUMN",
+      "contractEmployee": "karyawan kontrak",
+      "freelancer": "pekerja lepas",
+      "entrepreneur": "wirausahawan",
+      "businessOwner": "pemilik usaha",
+      "farmer": "petani",
+      "fisherman": "nelayan",
+      "laborer": "buruh",
+      "teacher": "guru",
+      "lecturer": "dosen",
+      "healthWorker": "tenaga kesehatan",
+      "student": "pelajar / mahasiswa",
+      "homemaker": "ibu rumah tangga",
+      "retired": "pensiunan",
+      "unemployed": "tidak bekerja"
+    },
+    "relationship": {
+      "father": "ayah",
+      "mother": "ibu",
+      "husband": "suami",
+      "wife": "istri",
+      "child": "anak",
+      "sibling": "saudara kandung",
+      "grandfather": "kakek",
+      "grandmother": "nenek",
+      "uncle": "paman",
+      "aunt": "bibi",
+      "cousin": "sepupu",
+      "guardian": "wali",
+      "other": "lainnya"
+    },
+    "loanType": {
+      "personal": "pinjaman personal",
+      "mortgage": "KPR",
+      "vehicle": "kendaraan",
+      "business": "bisnis",
+      "multipurpose": "multiguna"
+    },
+    "applicationStatus": {
+      "draft": "draf",
+      "submitted": "diajukan",
+      "reviewing": "sedang ditinjau",
+      "approved": "disetujui",
+      "rejected": "ditolak",
+      "disbursed": "dicairkan",
+      "cancelled": "dibatalkan"
+    },
+    "creditScore": {
+      "eligible": "layak",
+      "notEligible": "tidak layak"
+    },
+    "loanStatus": {
+      "active": "aktif",
+      "completed": "lunas",
+      "overdue": "jatuh tempo",
+      "default": "macet"
+    },
+    "paymentStatus": {
+      "onTime": "tepat waktu",
+      "late": "terlambat",
+      "pending": "tertunda"
+    },
+    "reportType": {
+      "daily": "harian",
+      "weekly": "mingguan",
+      "monthly": "bulanan",
+      "quarterly": "triwulan",
+      "yearly": "tahunan",
+      "custom": "kustom"
+    },
+    "notificationType": {
+      "system": "sistem",
+      "personal": "personal"
+    },
+    "notificationPriority": {
+      "low": "rendah",
+      "normal": "normal",
+      "high": "tinggi",
+      "urgent": "mendesak"
+    },
+    "questionType": {
+      "singleChoice": "pilihan tunggal",
+      "multipleChoice": "pilihan ganda",
+      "yesNo": "ya / tidak",
+      "trueFalse": "benar / salah",
+      "rating": "penilaian",
+      "scale": "skala",
+      "percentage": "persentase"
+    },
+    "questionCategory": {
+      "personal": "personal",
+      "identity": "identitas",
+      "contact": "kontak",
+      "address": "alamat",
+      "employment": "pekerjaan",
+      "income": "pendapatan",
+      "expense": "pengeluaran",
+      "financial": "keuangan",
+      "business": "bisnis",
+      "collateral": "jaminan",
+      "reference": "referensi",
+      "emergency": "darurat",
+      "education": "pendidikan",
+      "family": "keluarga",
+      "loanPurpose": "tujuan pinjaman",
+      "creditHistory": "riwayat kredit",
+      "assets": "aset",
+      "liabilities": "kewajiban",
+      "bankAccount": "rekening bank",
+      "other": "lainnya"
     }
   },
   "schemas": {
@@ -235,6 +577,81 @@
           "captionRedirect": "Daftar di sini!"
         }
       }
+    },
+    "settings": {
+      "title": "Pengaturan",
+      "general": "Umum",
+      "caption": "Pengaturan dasar untuk akun Anda",
+      "settingsSection": {
+        "appearance": {
+          "title": "Tampilan",
+          "caption": "Sesuaikan tampilan aplikasi"
+        },
+        "notifications": {
+          "title": "Notifikasi",
+          "caption": "Kelola preferensi notifikasi Anda"
+        }
+      },
+      "settingsCard": {
+        "language": {
+          "label": "Bahasa",
+          "caption": "Pilih bahasa yang Anda inginkan"
+        },
+        "theme": {
+          "label": "Tema",
+          "caption": "Pilih tema warna Anda"
+        },
+        "pushNotifications": {
+          "label": "Notifikasi Push",
+          "caption": "Terima notifikasi tentang pembaruan"
+        }
+      }
+    },
+    "customer": {
+      "title": "Nasabah",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Tambah Nasabah",
+            "description": "Isi detail yang diperlukan untuk membuat nasabah baru."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Tambah",
+            "submitButtonLoading": "Menambahkan"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Perbarui Nasabah",
+            "description": "Ubah detail nasabah sesuai kebutuhan."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Perbarui",
+            "submitButtonLoading": "Memperbarui"
+          }
+        },
+        "uploadingImage": "Mengunggah gambar"
+      },
+      "detail": {
+        "title": "Detail Nasabah",
+        "editButton": "Ubah",
+        "deleteButton": "Hapus",
+        "backButton": "Kembali",
+        "notFound": "Nasabah tidak ditemukan",
+        "personalDataLabel": "Data Pribadi",
+        "employmentDataLabel": "Data Pekerjaan",
+        "documentsLabel": "Dokumen",
+        "documents": {
+          "ktp": "KTP (Kartu Tanda Penduduk)",
+          "familyCard": "Kartu Keluarga",
+          "selfie": "Slip Gaji",
+          "payslip": "Foto Selfie",
+          "uploaded": "Terungkap",
+          "notUploaded": "Belum diunggah"
+        }
+      }
     }
   },
   "components": {
@@ -246,7 +663,7 @@
       },
       "items": {
         "dashboard": "Dasbor",
-        "customer": "Pelanggan",
+        "customer": "Nasabah",
         "guarantor": "Penjamin",
         "creditApplication": "Pengajuan Kredit",
         "creditAssessment": "Penilaian Kredit",
@@ -258,9 +675,53 @@
         "document": "Dokumen",
         "report": "Laporan",
         "notification": "Notifikasi",
+        "profile": "Profil",
         "admin": "Administrator",
         "settings": "Pengaturan"
       }
+    },
+    "customer": {
+      "deleteDialog": {
+        "title": "Apakah Anda yakin?",
+        "description": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus nasabah Anda secara permanen dan menghilangkan seluruh data dari server kami.",
+        "cancelButton": "Batal",
+        "deleteButton": "Hapus",
+        "deleteButtonLoading": "Menghapus"
+      },
+      "tableAction": {
+        "selected": "Dipilih",
+        "export": "Ekspor",
+        "delete": "Hapus"
+      }
+    }
+  },
+  "tables": {
+    "toolbar": {
+      "sort": "Urutkan",
+      "view": "Tampilan",
+      "searchView": "Cari kolom",
+      "viewNotFound": "Kolom tidak ditemukan"
+    },
+    "actions": {
+      "selected": "Dipilih",
+      "export": "Ekspor",
+      "delete": "Hapus"
+    },
+    "columns": {
+      "detail": "Detail",
+      "edit": "Ubah",
+      "delete": "Hapus"
+    },
+    "headers": {
+      "ascending": "Naik",
+      "descending": "Turun",
+      "reset": "Atur Ulang",
+      "hide": "Sembunyikan"
+    },
+    "footers": {
+      "selectedRows": "{{selectCount}} dari {{rowCount}} baris dipilih.",
+      "rowsPerPage": "Baris per halaman",
+      "page": "Halaman {{pageCount}} dari {{pageTotal}}"
     }
   },
   "forms": {
@@ -407,10 +868,12 @@
       }
     }
   },
-  "tables": {},
   "common": {
     "loading": "Memuat..",
     "error": "Terjadi kesalahan",
-    "retry": "Coba lagi"
+    "retry": "Coba lagi",
+    "years": "Tahun",
+    "createdAt": "Dibuat pada",
+    "updatedAt": "Diperbarui pada"
   }
 }

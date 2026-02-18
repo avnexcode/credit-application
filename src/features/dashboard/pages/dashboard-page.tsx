@@ -1,3 +1,4 @@
+import { DateTimeDisplay } from "@/components/elements";
 import {
   AdminLayout,
   PageContainer,
@@ -6,18 +7,15 @@ import {
 import { ChartjsProvider } from "@/components/layouts/providers";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
-import { useAuth } from "@/hooks";
 import { formatCurrency } from "@/utils";
 import { DashboardBadge, DoughnutChart, LineChart } from "../components";
 import { DashboardLayout } from "../components/layouts";
-import { DateTimeDisplay } from "@/components/elements";
 
 type DashboardPageProps = {
   sidebarDefaultOpen: boolean;
 };
 
 export const DashboardPage = () => {
-  const { settings } = useAuth();
   return (
     <PageContainer title="Dashboard">
       <SectionContainer padded>
@@ -40,13 +38,13 @@ export const DashboardPage = () => {
               </CardContent>
             </Card>
             <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-4">
-              <div className="mx-auto w-full max-w-[350px]">
+              <div className="mx-auto w-full max-w-87.5">
                 <DoughnutChart />
               </div>
-              <div className="mx-auto w-full max-w-[350px]">
+              <div className="mx-auto w-full max-w-87.5">
                 <DoughnutChart />
               </div>
-              <div className="mx-auto w-full max-w-[350px]">
+              <div className="mx-auto w-full max-w-87.5">
                 <DoughnutChart />
               </div>
             </div>

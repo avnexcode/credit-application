@@ -5,6 +5,7 @@ import {
   InputPassword as BaseInputPassword,
   InputStringNumber as BaseInputStringNumber,
   InputText as BaseInputText,
+  InputDate as BaseInputDate,
 } from "@/components/forms";
 import { useFormContext, type FieldValues } from "react-hook-form";
 
@@ -13,6 +14,7 @@ export const useFormInput = <T extends FieldValues>() => {
 
   return {
     InputText: BaseInputText<T>,
+    InputDate: BaseInputDate<T>,
     InputPassword: BaseInputPassword<T>,
     InputCurrency: BaseInputCurrency<T>,
     InputImage: BaseInputImage<T>,

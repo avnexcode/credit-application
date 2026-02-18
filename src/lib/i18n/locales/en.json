@@ -100,10 +100,8 @@
     "user": {
       "title": "user",
       "fields": {
-        "name": "name",
         "username": "username",
         "email": "email",
-        "phone": "phone",
         "avatar": "avatar",
         "image": "image",
         "providers": "providers",
@@ -117,7 +115,6 @@
       "fields": {
         "theme": "theme",
         "language": "language",
-        "currency": "currency",
         "notification": "notification",
         "createdAt": "created at",
         "updatedAt": "updated at"
@@ -126,23 +123,368 @@
     "permissions": {
       "title": "permissions",
       "fields": {
-        "createStore": "create store",
-        "updateStore": "updateStore",
-        "deleteStore": "deleteStore",
-        "createWarehouse": "create warehouse",
-        "updateWarehouse": "update warehouse",
-        "deleteWarehouse": "delete warehouse",
-        "createCategory": "create category",
-        "updateCategory": "update category",
-        "deleteCategory": "delete category",
-        "createProduct": "create product",
-        "updateProduct": "update product",
-        "deleteProduct": "delete product",
-        "deleteNotification": "delete notification",
         "createReport": "create report",
         "createdAt": "created at",
         "updatedAt": "updated at"
       }
+    },
+    "notification": {
+      "title": "notification",
+      "fields": {
+        "type": "type",
+        "category": "category",
+        "title": "title",
+        "message": "message",
+        "actionUrl": "action url",
+        "actionLabel": "action label",
+        "priority": "priority",
+        "isRead": "read",
+        "readAt": "read at",
+        "relatedType": "related type",
+        "relatedId": "related id",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "admin": {
+      "title": "admin",
+      "fields": {
+        "fullName": "full name",
+        "nationalId": "national id",
+        "birthPlace": "birth place",
+        "birthDate": "birth date",
+        "gender": "gender",
+        "age": "age",
+        "phone": "phone",
+        "email": "email",
+        "address": "address",
+        "maritalStatus": "marital status",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "customer": {
+      "title": "customer",
+      "fields": {
+        "fullName": "full name",
+        "nationalId": "national id",
+        "birthPlace": "birth place",
+        "birthDate": "birth date",
+        "gender": "gender",
+        "age": "age",
+        "phone": "phone",
+        "email": "email",
+        "address": "address",
+        "maritalStatus": "marital status",
+        "employmentType": "employment type",
+        "employmentName": "employment name",
+        "employmentPeriod": "employment period",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "bankAccount": {
+      "title": "bank account",
+      "fields": {
+        "accountName": "account name",
+        "accountNumber": "account number",
+        "isPrimary": "primary account",
+        "isVerified": "verified",
+        "isActive": "active",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "guarantor": {
+      "title": "guarantor",
+      "fields": {
+        "fullName": "full name",
+        "nationalId": "national id",
+        "birthPlace": "birth place",
+        "birthDate": "birth date",
+        "gender": "gender",
+        "address": "address",
+        "phone": "phone",
+        "email": "email",
+        "maritalStatus": "marital status",
+        "employmentType": "employment type",
+        "employmentName": "employment name",
+        "employmentPeriod": "employment period",
+        "relationship": "relationship",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "documents": {
+      "title": "documents",
+      "fields": {
+        "identityCard": "identity card",
+        "familyCard": "family card",
+        "salarySlip": "salary slip",
+        "bankStatement": "bank statement",
+        "selfie": "selfie",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "creditApplication": {
+      "title": "credit application",
+      "fields": {
+        "applicationNumber": "application number",
+        "loanType": "loan type",
+        "loanAmount": "loan amount",
+        "loanPeriod": "loan period",
+        "loanPurpose": "loan purpose",
+        "collateralCertificate": "collateral certificate",
+        "collateralValue": "collateral value",
+        "monthlyIncome": "monthly income",
+        "incomeProof": "income proof",
+        "monthlyExpenses": "monthly expenses",
+        "surplus": "surplus",
+        "status": "status",
+        "submittedAt": "submitted at",
+        "reviewedAt": "reviewed at",
+        "approvedAt": "approved at",
+        "rejectedAt": "rejected at",
+        "rejectionReason": "rejection reason",
+        "disbursedAt": "disbursed at",
+        "notes": "notes",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "creditWorthiness": {
+      "title": "credit worthiness",
+      "fields": {
+        "creditScore": "credit score",
+        "assessmentResult": "assessment result",
+        "assessedAt": "assessed at",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "interviewQuestion": {
+      "title": "interview question",
+      "fields": {
+        "questionText": "question",
+        "questionType": "question type",
+        "category": "category",
+        "isRequired": "required",
+        "isActive": "active",
+        "orderNumber": "order number",
+        "options": "options",
+        "placeholder": "placeholder",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "interviewAnswer": {
+      "title": "interview answer",
+      "fields": {
+        "answerText": "answer",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "loanReference": {
+      "title": "loan reference",
+      "fields": {
+        "loanNumber": "loan number",
+        "principalAmount": "principal amount",
+        "interestRate": "interest rate",
+        "loanPeriod": "loan period",
+        "monthlyPayment": "monthly payment",
+        "totalPayment": "total payment",
+        "status": "status",
+        "startDate": "start date",
+        "endDate": "end date",
+        "nextPaymentDate": "next payment date",
+        "overdueCount": "overdue count",
+        "lateFeeAmount": "late fee amount",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "loanBalance": {
+      "title": "loan balance",
+      "fields": {
+        "principalRemaining": "principal remaining",
+        "interestRemaining": "interest remaining",
+        "totalRemaining": "total remaining",
+        "principalPaid": "principal paid",
+        "interestPaid": "interest paid",
+        "totalPaid": "total paid",
+        "lateFeeTotal": "total late fee",
+        "lastPaymentDate": "last payment date",
+        "lastPaymentAmount": "last payment amount",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "paymentRecord": {
+      "title": "payment record",
+      "fields": {
+        "installmentNumber": "installment number",
+        "dueDate": "due date",
+        "paymentDate": "payment date",
+        "totalAmount": "total amount",
+        "principalAmount": "principal amount",
+        "interestAmount": "interest amount",
+        "paidAmount": "paid amount",
+        "lateFeeAmount": "late fee amount",
+        "status": "status",
+        "daysOverdue": "days overdue",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    },
+    "report": {
+      "title": "report",
+      "fields": {
+        "reportType": "report type",
+        "title": "title",
+        "description": "description",
+        "startDate": "start date",
+        "endDate": "end date",
+        "fileUrl": "file url",
+        "createdAt": "created at",
+        "updatedAt": "updated at"
+      }
+    }
+  },
+  "enums": {
+    "theme": {
+      "light": "light",
+      "dark": "dark",
+      "system": "system"
+    },
+    "language": {
+      "en": "English",
+      "id": "Indonesian"
+    },
+    "gender": {
+      "male": "male",
+      "female": "female"
+    },
+    "maritalStatus": {
+      "single": "single",
+      "married": "married",
+      "divorced": "divorced",
+      "widowed": "widowed"
+    },
+    "employmentType": {
+      "civilServant": "civil servant",
+      "privateEmployee": "private employee",
+      "stateOwnedEmployee": "state-owned employee",
+      "contractEmployee": "contract employee",
+      "freelancer": "freelancer",
+      "entrepreneur": "entrepreneur",
+      "businessOwner": "business owner",
+      "farmer": "farmer",
+      "fisherman": "fisherman",
+      "laborer": "laborer",
+      "teacher": "teacher",
+      "lecturer": "lecturer",
+      "healthWorker": "health worker",
+      "student": "student",
+      "homemaker": "homemaker",
+      "retired": "retired",
+      "unemployed": "unemployed"
+    },
+    "relationship": {
+      "father": "father",
+      "mother": "mother",
+      "husband": "husband",
+      "wife": "wife",
+      "child": "child",
+      "sibling": "sibling",
+      "grandfather": "grandfather",
+      "grandmother": "grandmother",
+      "uncle": "uncle",
+      "aunt": "aunt",
+      "cousin": "cousin",
+      "guardian": "guardian",
+      "other": "other"
+    },
+    "loanType": {
+      "personal": "personal",
+      "mortgage": "mortgage",
+      "vehicle": "vehicle",
+      "business": "business",
+      "multipurpose": "multipurpose"
+    },
+    "applicationStatus": {
+      "draft": "draft",
+      "submitted": "submitted",
+      "reviewing": "reviewing",
+      "approved": "approved",
+      "rejected": "rejected",
+      "disbursed": "disbursed",
+      "cancelled": "cancelled"
+    },
+    "creditScore": {
+      "eligible": "eligible",
+      "notEligible": "not eligible"
+    },
+    "loanStatus": {
+      "active": "active",
+      "completed": "completed",
+      "overdue": "overdue",
+      "default": "default"
+    },
+    "paymentStatus": {
+      "onTime": "on time",
+      "late": "late",
+      "pending": "pending"
+    },
+    "reportType": {
+      "daily": "daily",
+      "weekly": "weekly",
+      "monthly": "monthly",
+      "quarterly": "quarterly",
+      "yearly": "yearly",
+      "custom": "custom"
+    },
+    "notificationType": {
+      "system": "system",
+      "personal": "personal"
+    },
+    "notificationPriority": {
+      "low": "low",
+      "normal": "normal",
+      "high": "high",
+      "urgent": "urgent"
+    },
+    "questionType": {
+      "singleChoice": "single choice",
+      "multipleChoice": "multiple choice",
+      "yesNo": "yes / no",
+      "trueFalse": "true / false",
+      "rating": "rating",
+      "scale": "scale",
+      "percentage": "percentage"
+    },
+    "questionCategory": {
+      "personal": "personal",
+      "identity": "identity",
+      "contact": "contact",
+      "address": "address",
+      "employment": "employment",
+      "income": "income",
+      "expense": "expense",
+      "financial": "financial",
+      "business": "business",
+      "collateral": "collateral",
+      "reference": "reference",
+      "emergency": "emergency",
+      "education": "education",
+      "family": "family",
+      "loanPurpose": "loan purpose",
+      "creditHistory": "credit history",
+      "assets": "assets",
+      "liabilities": "liabilities",
+      "bankAccount": "bank account",
+      "other": "other"
     }
   },
   "schemas": {
@@ -248,50 +590,80 @@
         }
       }
     },
-    "profile": {
-      "title": "Profile",
+    "settings": {
+      "title": "Settings",
+      "general": "General",
+      "caption": "Basic settings for your account",
+      "settingsSection": {
+        "appearance": {
+          "title": "Appearance",
+          "caption": "Customize how the app looks"
+        },
+        "notifications": {
+          "title": "Notifications",
+          "caption": "Manage your notification preferences"
+        }
+      },
+      "settingsCard": {
+        "language": {
+          "label": "Language",
+          "caption": "Select your preferred language"
+        },
+
+        "theme": {
+          "label": "Theme",
+          "caption": "Choose your color theme"
+        },
+
+        "pushNotifications": {
+          "label": "Push Notifications",
+          "caption": "Receive notifications about updates"
+        }
+      }
+    },
+    "customer": {
+      "title": "Customer",
       "forms": {
+        "create": {
+          "header": {
+            "title": "Create Customer",
+            "description": "Fill in the details to create a new customer."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Create",
+            "submitButtonLoading": "Creating"
+          }
+        },
         "update": {
           "header": {
-            "title": "Update Profile",
-            "description": "Modify the profile details as needed."
+            "title": "Update Customer",
+            "description": "Modify the customer details as needed."
           },
           "footer": {
             "cancelButton": "Cancel",
             "submitButton": "Update",
             "submitButtonLoading": "Updating"
-          }
-        },
-        "updatePassword": {
-          "header": {
-            "title": "Update Password",
-            "description": "Modify the profile details as needed."
-          },
-          "footer": {
-            "cancelButton": "Cancel",
-            "submitButton": "Update",
-            "submitButtonLoading": "Updating"
-          }
-        },
-        "delete": {
-          "header": {
-            "title": "Delete Profile",
-            "description": "Modify the profile details as needed."
-          },
-          "footer": {
-            "cancelButton": "Cancel",
-            "submitButton": "Delete Account",
-            "submitButtonLoading": "Deleting"
           }
         },
         "uploadingImage": "Uploading image"
-      }
-    },
-    "settings": {
-      "general": {
-        "language": {
-          "title": "Language",
-          "caption": "Select your preferred language"
+      },
+      "detail": {
+        "title": "Customer Details",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "backButton": "Back",
+        "notFound": "Customer not found",
+        "personalDataLabel": "Personal Data",
+        "employmentDataLabel": "Employment Data",
+        "documentsLabel": "Documents",
+        "documents": {
+          "ktp": "KTP (Identity Card)",
+          "familyCard": "Family Card",
+          "selfie": "Salary Slip",
+          "payslip": "Selfie Photo",
+          "uploaded": "Uploaded",
+          "notUploaded": "Not Uploaded"
         }
       }
     }
@@ -317,12 +689,55 @@
         "document": "Documents",
         "report": "Reports",
         "notification": "Notifications",
+        "profile": "Profile",
         "admin": "Admins",
         "settings": "Settings"
       }
+    },
+    "customer": {
+      "deleteDialog": {
+        "title": "Are you absolutely sure?",
+        "description": "This action cannot be undone. This will permanently delete your customer and remove your data from our servers.",
+        "cancelButton": "Cancel",
+        "deleteButton": "Delete",
+        "deleteButtonLoading": "Deleting"
+      },
+      "tableAction": {
+        "selected": "Selected",
+        "export": "Export",
+        "delete": "Delete"
+      }
     }
   },
-  "tables": {},
+  "tables": {
+    "toolbar": {
+      "sort": "Sort",
+      "view": "View",
+      "searchView": "Search columns",
+      "viewNotFound": "No columns found"
+    },
+    "actions": {
+      "selected": "Selected",
+      "export": "Export",
+      "delete": "Delete"
+    },
+    "columns": {
+      "detail": "Detail",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "headers": {
+      "ascending": "Ascending",
+      "descending": "Descending",
+      "reset": "Reset",
+      "hide": "Hide"
+    },
+    "footers": {
+      "selectedRows": "{{selectCount}} of {{rowCount}} row(s) selected.",
+      "rowsPerPage": "Rows per page",
+      "page": "Page {{pageCount}} of {{pageTotal}}"
+    }
+  },
   "forms": {
     "placeholders": {
       "input": "Input {{field}} here",
@@ -472,6 +887,9 @@
     "error": "Something went wrong",
     "retry": "Try again",
     "showLess": "Show Less",
-    "showMore": "Show More"
+    "showMore": "Show More",
+    "years": "Years",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at"
   }
 }

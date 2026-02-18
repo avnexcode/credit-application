@@ -12,7 +12,9 @@ export const DashboardHeader = ({ title }: DashboardHeaderProps) => {
     <header className="space-y-3 py-5">
       <div className="flex w-full items-center gap-x-2">
         <SidebarTrigger size={"icon-lg"} />
-        <Heading size={"h3"}>{title}</Heading>
+        <Heading size={"h3"} className="capitalize">
+          {title}
+        </Heading>
       </div>
       <Separator />
       <SegmentsNavigation />
