@@ -1,24 +1,24 @@
 import type { DBClient } from "@/server/db";
 import type {
-  CreateCustomerRequest,
-  CreateCustomerResponse,
-  CustomerResponse,
-  DeleteCustomerRequest,
-  DeleteCustomerResponse,
-  DeleteCustomersRequest,
-  DeleteCustomersResponse,
+  AdminResponse,
+  CreateAdminRequest,
+  CreateAdminResponse,
+  DeleteAdminRequest,
+  DeleteAdminResponse,
+  DeleteAdminsRequest,
+  DeleteAdminsResponse,
   QueryParams,
-  UpdateCustomerRequest,
-  UpdateCustomerResponse,
+  UpdateAdminRequest,
+  UpdateAdminResponse,
 } from "@/server/models";
 
-export class CustomerRepository {
+export class AdminRepository {
   protected static orQuery = ["fullName", "nationalId"];
 
   static findMany = async (
     db: DBClient,
     params: QueryParams,
-  ): Promise<CustomerResponse[]> => {
+  ): Promise<AdminResponse[]> => {
     const { page, limit, search, sort } = params;
 
     const skip = (page - 1) * limit;
@@ -27,7 +27,7 @@ export class CustomerRepository {
       [field]: { contains: search, mode: "insensitive" },
     }));
 
-    const customers = await db.customer.findMany({
+    const admins = await db.admin.findMany({
       where: { ...(search && { OR: orQuery }) },
       select: {
         id: true,
@@ -41,9 +41,6 @@ export class CustomerRepository {
         email: true,
         address: true,
         maritalStatus: true,
-        employmentType: true,
-        employmentName: true,
-        employmentPeriod: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -52,15 +49,15 @@ export class CustomerRepository {
       orderBy: sort.map((s) => ({ [s.id]: s.desc ? "desc" : "asc" })),
     });
 
-    return customers;
+    return admins;
   };
 
   static findUniqueId = async (
     db: DBClient,
-    customerId: string,
-  ): Promise<CustomerResponse | null> => {
-    const customer = await db.customer.findUnique({
-      where: { id: customerId },
+    adminId: string,
+  ): Promise<AdminResponse | null> => {
+    const admin = await db.admin.findUnique({
+      where: { id: adminId },
       select: {
         id: true,
         fullName: true,
@@ -73,22 +70,19 @@ export class CustomerRepository {
         email: true,
         address: true,
         maritalStatus: true,
-        employmentType: true,
-        employmentName: true,
-        employmentPeriod: true,
         createdAt: true,
         updatedAt: true,
       },
     });
 
-    return customer;
+    return admin;
   };
 
   static findUniqueNationalId = async (
     db: DBClient,
     nationalId: string,
-  ): Promise<CustomerResponse | null> => {
-    const customer = await db.customer.findUnique({
+  ): Promise<AdminResponse | null> => {
+    const admin = await db.admin.findUnique({
       where: { nationalId },
       select: {
         id: true,
@@ -102,15 +96,12 @@ export class CustomerRepository {
         email: true,
         address: true,
         maritalStatus: true,
-        employmentType: true,
-        employmentName: true,
-        employmentPeriod: true,
         createdAt: true,
         updatedAt: true,
       },
     });
 
-    return customer;
+    return admin;
   };
 
   static countAllSearch = async (
@@ -121,40 +112,40 @@ export class CustomerRepository {
       [field]: { contains: search, mode: "insensitive" },
     }));
 
-    const customersCount = await db.customer.count({
+    const adminsCount = await db.admin.count({
       where: { ...(search && { OR: orQuery }) },
     });
 
-    return customersCount;
+    return adminsCount;
   };
 
   static countUniqueId = async (
     db: DBClient,
-    customerId: string,
+    adminId: string,
   ): Promise<number> => {
-    const customersCount = await db.customer.count({
-      where: { id: customerId },
+    const adminsCount = await db.admin.count({
+      where: { id: adminId },
     });
 
-    return customersCount;
+    return adminsCount;
   };
 
   static countUniqueNationalId = async (
     db: DBClient,
     nationalId: string,
   ): Promise<number> => {
-    const customersCount = await db.customer.count({
+    const adminsCount = await db.admin.count({
       where: { nationalId },
     });
 
-    return customersCount;
+    return adminsCount;
   };
 
   static insert = async (
     db: DBClient,
-    request: CreateCustomerRequest,
-  ): Promise<CreateCustomerResponse> => {
-    const customer = await db.customer.create({
+    request: CreateAdminRequest,
+  ): Promise<CreateAdminResponse> => {
+    const admin = await db.admin.create({
       data: { ...request },
       select: {
         id: true,
@@ -168,24 +159,21 @@ export class CustomerRepository {
         email: true,
         address: true,
         maritalStatus: true,
-        employmentType: true,
-        employmentName: true,
-        employmentPeriod: true,
         createdAt: true,
         userId: true,
       },
     });
 
-    return customer;
+    return admin;
   };
 
   static update = async (
     db: DBClient,
-    customerId: string,
-    request: UpdateCustomerRequest,
-  ): Promise<UpdateCustomerResponse> => {
-    const customer = await db.customer.update({
-      where: { id: customerId },
+    adminId: string,
+    request: UpdateAdminRequest,
+  ): Promise<UpdateAdminResponse> => {
+    const admin = await db.admin.update({
+      where: { id: adminId },
       data: { ...request },
       select: {
         id: true,
@@ -199,40 +187,37 @@ export class CustomerRepository {
         email: true,
         address: true,
         maritalStatus: true,
-        employmentType: true,
-        employmentName: true,
-        employmentPeriod: true,
         updatedAt: true,
         userId: true,
       },
     });
 
-    return customer;
+    return admin;
   };
 
   static destroy = async (
     db: DBClient,
-    request: DeleteCustomerRequest,
-  ): Promise<DeleteCustomerResponse> => {
-    const customer = await db.customer.delete({
+    request: DeleteAdminRequest,
+  ): Promise<DeleteAdminResponse> => {
+    const admin = await db.admin.delete({
       where: { id: request.id },
       select: { id: true },
     });
 
-    return customer;
+    return admin;
   };
 
   static destroyMany = async (
     db: DBClient,
-    request: DeleteCustomersRequest,
-  ): Promise<DeleteCustomersResponse> => {
-    const customers = await db.customer.findMany({
+    request: DeleteAdminsRequest,
+  ): Promise<DeleteAdminsResponse> => {
+    const admins = await db.admin.findMany({
       where: { id: { in: request.ids } },
       select: { id: true },
     });
 
-    await db.customer.deleteMany({ where: { id: { in: request.ids } } });
+    await db.admin.deleteMany({ where: { id: { in: request.ids } } });
 
-    return customers;
+    return admins;
   };
 }

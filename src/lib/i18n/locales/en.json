@@ -666,6 +666,43 @@
           "notUploaded": "Not Uploaded"
         }
       }
+    },
+    "admin": {
+      "title": "Admin",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Create Admin",
+            "description": "Fill in the details to create a new admin."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Create",
+            "submitButtonLoading": "Creating"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Update Admin",
+            "description": "Modify the admin details as needed."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Update",
+            "submitButtonLoading": "Updating"
+          }
+        },
+        "uploadingImage": "Uploading image"
+      },
+      "detail": {
+        "title": "Admin Details",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "backButton": "Back",
+        "notFound": "Admin not found",
+        "personalDataLabel": "Personal Data",
+        "contactDataLabel": "Contact Data"
+      }
     }
   },
   "components": {
@@ -694,19 +731,12 @@
         "settings": "Settings"
       }
     },
-    "customer": {
-      "deleteDialog": {
-        "title": "Are you absolutely sure?",
-        "description": "This action cannot be undone. This will permanently delete your customer and remove your data from our servers.",
-        "cancelButton": "Cancel",
-        "deleteButton": "Delete",
-        "deleteButtonLoading": "Deleting"
-      },
-      "tableAction": {
-        "selected": "Selected",
-        "export": "Export",
-        "delete": "Delete"
-      }
+    "deleteDialog": {
+      "title": "Are you absolutely sure?",
+      "description": "This action cannot be undone. This will permanently delete your {{model}} and remove your data from our servers.",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete",
+      "deleteButtonLoading": "Deleting"
     }
   },
   "tables": {

@@ -115,7 +115,7 @@ model Notification {
 }
 
 model Admin {
-    id            String         @id @default(cuid()) @map("id") @db.VarChar(56)
+    id            String         @id @default(uuid()) @map("id") @db.VarChar(56)
     fullName      String         @map("full_name") @db.VarChar(150)
     nationalId    String?        @unique @map("national_id") @db.VarChar(20)
     birthPlace    String?        @map("birth_place") @db.VarChar(100)

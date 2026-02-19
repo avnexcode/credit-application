@@ -19,7 +19,7 @@
     "preview": "next build && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "seed:customer": "py ./prisma/seeder/sql/bulk/customer.py"
+    "seed:create": "py ./prisma/seeder/bulk/main.py"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

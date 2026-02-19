@@ -6,6 +6,7 @@ import {
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import type { GetServerSidePropsContext } from "next";
 import {
+  adminRouter,
   authRouter,
   customerRouter,
   settingsRouter,
@@ -17,6 +18,7 @@ export const appRouter = createTRPCRouter({
   settings: settingsRouter,
   user: userRouter,
   customer: customerRouter,
+  admin: adminRouter,
 });
 
 export type AppRouter = typeof appRouter;

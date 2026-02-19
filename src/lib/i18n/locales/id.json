@@ -652,6 +652,43 @@
           "notUploaded": "Belum diunggah"
         }
       }
+    },
+    "admin": {
+      "title": "Admin",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Tambah Admin",
+            "description": "Isi detail yang diperlukan untuk membuat admin baru."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Tambah",
+            "submitButtonLoading": "Menambahkan"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Perbarui Admin",
+            "description": "Ubah detail admin sesuai kebutuhan."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Perbarui",
+            "submitButtonLoading": "Memperbarui"
+          }
+        },
+        "uploadingImage": "Mengunggah gambar"
+      },
+      "detail": {
+        "title": "Detail Admin",
+        "editButton": "Ubah",
+        "deleteButton": "Hapus",
+        "backButton": "Kembali",
+        "notFound": "Admin tidak ditemukan",
+        "personalDataLabel": "Data Pribadi",
+        "contactDataLabel": "Data Kontak"
+      }
     }
   },
   "components": {
@@ -680,19 +717,12 @@
         "settings": "Pengaturan"
       }
     },
-    "customer": {
-      "deleteDialog": {
-        "title": "Apakah Anda yakin?",
-        "description": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus nasabah Anda secara permanen dan menghilangkan seluruh data dari server kami.",
-        "cancelButton": "Batal",
-        "deleteButton": "Hapus",
-        "deleteButtonLoading": "Menghapus"
-      },
-      "tableAction": {
-        "selected": "Dipilih",
-        "export": "Ekspor",
-        "delete": "Hapus"
-      }
+    "deleteDialog": {
+      "title": "Apakah Anda yakin?",
+      "description": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus {{model}} Anda secara permanen dan menghilangkan seluruh data dari server kami.",
+      "cancelButton": "Batal",
+      "deleteButton": "Hapus",
+      "deleteButtonLoading": "Menghapus"
     }
   },
   "tables": {

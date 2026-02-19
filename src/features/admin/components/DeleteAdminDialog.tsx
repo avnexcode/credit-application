@@ -11,19 +11,19 @@ import {
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-type DeleteCustomerDialogProps = {
+type DeleteAdminDialogProps = {
   onDelete: () => void;
   isPending: boolean;
   setIsOpen: (open: boolean) => void;
   isOpen: boolean;
 };
 
-export const DeleteCustomerDialog = ({
+export const DeleteAdminDialog = ({
   onDelete,
   isPending,
   setIsOpen,
   isOpen,
-}: DeleteCustomerDialogProps) => {
+}: DeleteAdminDialogProps) => {
   const { t } = useTranslation();
 
   return (
@@ -35,7 +35,7 @@ export const DeleteCustomerDialog = ({
           </AlertDialogTitle>
           <AlertDialogDescription>
             {t("components.deleteDialog.description", {
-              model: t("models.customer.title"),
+              model: t("models.admin.title"),
             })}
           </AlertDialogDescription>
         </AlertDialogHeader>
