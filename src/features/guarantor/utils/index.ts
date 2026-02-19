@@ -91,6 +91,7 @@ export const getMaritalStatus = ({
     ? capitalizeWords(t(MARITAL_STATUS_LABEL[maritalStatus]))
     : "-";
 };
+
 type GetRelationshipProps = {
   relationship?: Relationship | null;
   t?: TFunction;

@@ -193,6 +193,7 @@
         "birthPlace": "tempat lahir",
         "birthDate": "tanggal lahir",
         "gender": "jenis kelamin",
+        "age": "usia",
         "address": "alamat",
         "phone": "nomor telepon",
         "email": "email",
@@ -607,6 +608,43 @@
         }
       }
     },
+    "admin": {
+      "title": "Admin",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Tambah Admin",
+            "description": "Isi detail yang diperlukan untuk membuat admin baru."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Tambah",
+            "submitButtonLoading": "Menambahkan"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Perbarui Admin",
+            "description": "Ubah detail admin sesuai kebutuhan."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Perbarui",
+            "submitButtonLoading": "Memperbarui"
+          }
+        },
+        "uploadingImage": "Mengunggah gambar"
+      },
+      "detail": {
+        "title": "Detail Admin",
+        "editButton": "Ubah",
+        "deleteButton": "Hapus",
+        "backButton": "Kembali",
+        "notFound": "Admin tidak ditemukan",
+        "personalDataLabel": "Data Pribadi",
+        "contactDataLabel": "Data Kontak"
+      }
+    },
     "customer": {
       "title": "Nasabah",
       "forms": {
@@ -653,13 +691,13 @@
         }
       }
     },
-    "admin": {
-      "title": "Admin",
+    "guarantor": {
+      "title": "Penjamin",
       "forms": {
         "create": {
           "header": {
-            "title": "Tambah Admin",
-            "description": "Isi detail yang diperlukan untuk membuat admin baru."
+            "title": "Tambah Penjamin",
+            "description": "Isi detail yang diperlukan untuk membuat penjamin baru."
           },
           "footer": {
             "cancelButton": "Batal",
@@ -669,8 +707,8 @@
         },
         "update": {
           "header": {
-            "title": "Perbarui Admin",
-            "description": "Ubah detail admin sesuai kebutuhan."
+            "title": "Perbarui Penjamin",
+            "description": "Ubah detail penjamin sesuai kebutuhan."
           },
           "footer": {
             "cancelButton": "Batal",
@@ -681,13 +719,14 @@
         "uploadingImage": "Mengunggah gambar"
       },
       "detail": {
-        "title": "Detail Admin",
+        "title": "Detail Penjamin",
         "editButton": "Ubah",
         "deleteButton": "Hapus",
         "backButton": "Kembali",
-        "notFound": "Admin tidak ditemukan",
+        "notFound": "Penjamin tidak ditemukan",
         "personalDataLabel": "Data Pribadi",
-        "contactDataLabel": "Data Kontak"
+        "employmentDataLabel": "Data Pekerjaan",
+        "relationshipLabel": "Informasi Hubungan"
       }
     }
   },

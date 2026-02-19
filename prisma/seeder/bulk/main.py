@@ -4,9 +4,17 @@ import os
 
 sys.path.append(os.path.dirname(__file__))
 
-from dummy import FULL_NAMES, CITIES, GENDERS, EMPLOYMENT_TYPES, MARITAL_STATUSES
+from dummy import (
+    FULL_NAMES,
+    CITIES,
+    GENDERS,
+    EMPLOYMENT_TYPES,
+    MARITAL_STATUSES,
+    RELATIONSHIPS,
+)
 from admin import generate_admins_bulk_insert_sql
 from customer import generate_customers_bulk_insert_sql
+from guarantor import generate_guarantors_bulk_insert_sql
 
 
 def main():
@@ -32,6 +40,25 @@ def main():
         filename="./prisma/seeder/sql/customers_seed.sql",
     )
     print(f"✅ Customers SQL generated: {customer_file}")
+
+    # ✅ Guarantor hanya berjalan jika customer_file sudah tersedia dan file-nya ada
+    if not customer_file or not os.path.exists(customer_file):
+        raise FileNotFoundError(
+            f"❌ Customer seed file tidak ditemukan: {customer_file}. Guarantor generation dibatalkan."
+        )
+
+    guarantor_file = generate_guarantors_bulk_insert_sql(
+        n=50,
+        fullNames=FULL_NAMES,
+        cities=CITIES,
+        genders=GENDERS,
+        employment_types=EMPLOYMENT_TYPES,
+        marital_statuses=MARITAL_STATUSES,
+        relationships=RELATIONSHIPS,
+        filename="./prisma/seeder/sql/guarantors_seed.sql",
+        ids=customer_file,  # ✅ Gunakan return value langsung, bukan hardcode path
+    )
+    print(f"✅ Guarantors SQL generated: {guarantor_file}")
 
     print("🎉 All SQL files generated successfully!")
 

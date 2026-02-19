@@ -203,6 +203,7 @@
         "birthPlace": "birth place",
         "birthDate": "birth date",
         "gender": "gender",
+        "age": "age",
         "address": "address",
         "phone": "phone",
         "email": "email",
@@ -621,6 +622,43 @@
         }
       }
     },
+    "admin": {
+      "title": "Admin",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Create Admin",
+            "description": "Fill in the details to create a new admin."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Create",
+            "submitButtonLoading": "Creating"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Update Admin",
+            "description": "Modify the admin details as needed."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Update",
+            "submitButtonLoading": "Updating"
+          }
+        },
+        "uploadingImage": "Uploading image"
+      },
+      "detail": {
+        "title": "Admin Details",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "backButton": "Back",
+        "notFound": "Admin not found",
+        "personalDataLabel": "Personal Data",
+        "contactDataLabel": "Contact Data"
+      }
+    },
     "customer": {
       "title": "Customer",
       "forms": {
@@ -667,13 +705,13 @@
         }
       }
     },
-    "admin": {
-      "title": "Admin",
+    "guarantor": {
+      "title": "Guarantor",
       "forms": {
         "create": {
           "header": {
-            "title": "Create Admin",
-            "description": "Fill in the details to create a new admin."
+            "title": "Create Guarantor",
+            "description": "Fill in the details to create a new guarantor."
           },
           "footer": {
             "cancelButton": "Cancel",
@@ -683,8 +721,8 @@
         },
         "update": {
           "header": {
-            "title": "Update Admin",
-            "description": "Modify the admin details as needed."
+            "title": "Update Guarantor",
+            "description": "Modify the guarantor details as needed."
           },
           "footer": {
             "cancelButton": "Cancel",
@@ -695,13 +733,14 @@
         "uploadingImage": "Uploading image"
       },
       "detail": {
-        "title": "Admin Details",
+        "title": "Guarantor Details",
         "editButton": "Edit",
         "deleteButton": "Delete",
         "backButton": "Back",
-        "notFound": "Admin not found",
+        "notFound": "Guarantor not found",
         "personalDataLabel": "Personal Data",
-        "contactDataLabel": "Contact Data"
+        "employmentDataLabel": "Employment Data",
+        "relationshipLabel": "Relationship Information"
       }
     }
   },

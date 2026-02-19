@@ -231,13 +231,14 @@ model BankAccount {
 model Guarantor {
     id               String         @id @default(uuid()) @map("id") @db.VarChar(56)
     fullName         String         @map("full_name") @db.VarChar(150)
-    nationalId       String         @map("national_id") @db.VarChar(20)
+    nationalId       String         @unique @map("national_id") @db.VarChar(20)
     birthPlace       String         @map("birth_place") @db.VarChar(100)
     birthDate        DateTime       @map("birth_date") @db.Date
     gender           Gender         @map("gender")
-    address          String         @map("address") @db.Text
+    age              Int?           @map("age")
     phone            String         @map("phone") @db.VarChar(20)
     email            String?        @map("email") @db.VarChar(150)
+    address          String         @map("address") @db.Text
     maritalStatus    MaritalStatus  @map("marital_status")
     employmentType   EmploymentType @map("employment_type")
     employmentName   String?        @map("employment_name") @db.VarChar(150)

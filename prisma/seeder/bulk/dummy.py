@@ -537,4 +537,20 @@ EMPLOYMENT_TYPES = [
     "unemployed",
 ]
 
+RELATIONSHIPS = [
+    "father",
+    "mother",
+    "husband",
+    "wife",
+    "child",
+    "sibling",
+    "grandfather",
+    "grandmother",
+    "uncle",
+    "aunt",
+    "cousin",
+    "guardian",
+    "other",
+]
+
 CITIES = ["Jakarta", "Blitar", "Wonogiri", "Malang"]

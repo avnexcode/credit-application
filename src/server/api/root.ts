@@ -9,6 +9,7 @@ import {
   adminRouter,
   authRouter,
   customerRouter,
+  guarantorRouter,
   settingsRouter,
   userRouter,
 } from "./routers";
@@ -17,8 +18,9 @@ export const appRouter = createTRPCRouter({
   auth: authRouter,
   settings: settingsRouter,
   user: userRouter,
-  customer: customerRouter,
   admin: adminRouter,
+  customer: customerRouter,
+  guarantor: guarantorRouter,
 });
 
 export type AppRouter = typeof appRouter;
