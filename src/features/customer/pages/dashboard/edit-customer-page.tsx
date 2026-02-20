@@ -4,10 +4,10 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
+import { api, capitalizeWords } from "@/utils";
 import { useParams } from "next/navigation";
-import { EditCustomerForm } from "../../forms";
-import { api } from "@/utils";
 import { useTranslation } from "react-i18next";
+import { EditCustomerForm } from "../../forms";
 
 type DashboardEditCustomerPageProps = {
   sidebarDefaultOpen: boolean;
@@ -21,9 +21,14 @@ export const DashboardEditCustomerPage = () => {
     api.customer.getById.useQuery({ id }, { enabled: !!id });
 
   return (
-    <PageContainer>
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.customer.title"))}`}
+    >
       <SectionContainer padded>
-        <DashboardLayout title={t("models.customer.title")}>
+        <DashboardLayout
+          title={t("models.customer.title")}
+          className="space-y-5"
+        >
           {isCustomerLoading ? (
             <>Loading...</>
           ) : (

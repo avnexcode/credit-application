@@ -4,20 +4,18 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
-import { api } from "@/utils";
-import { formatDate } from "@/utils";
+import { getGender, getMaritalStatus } from "@/lib/get-enum-label";
+import { api, capitalizeWords, formatDate } from "@/utils";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
 import {
   AdminDetailCard,
+  DeleteAdminButton,
   DetailRow,
   DetailSection,
-  DeleteAdminButton,
 } from "../../components";
-import { getGender, getMaritalStatus } from "../../utils";
 
 type DashboardDetailAdminPageProps = {
   sidebarDefaultOpen: boolean;
@@ -34,7 +32,9 @@ export const DashboardDetailAdminPage = () => {
 
   if (isAdminLoading) {
     return (
-      <PageContainer title={t("pages.admin.detail.title")}>
+      <PageContainer
+        title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.admin.title"))}`}
+      >
         <SectionContainer padded>
           <DashboardLayout
             title={t("models.admin.title")}

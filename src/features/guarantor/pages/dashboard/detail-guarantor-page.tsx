@@ -4,26 +4,19 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { Button } from "@/components/ui/button";
+import { DetailRow, DetailSection } from "@/features/customer/components";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
-import { api } from "@/utils";
-import { formatDate } from "@/utils";
-import { useParams } from "next/navigation";
-import { useTranslation } from "react-i18next";
-import Link from "next/link";
-import {
-  GuarantorDetailCard,
-  DeleteGuarantorButton,
-} from "../../components";
-import {
-  DetailRow,
-  DetailSection,
-} from "@/features/customer/components";
 import {
   getEmploymentType,
   getGender,
   getMaritalStatus,
   getRelationship,
-} from "../../utils";
+} from "@/lib/get-enum-label";
+import { api, capitalizeWords, formatDate } from "@/utils";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import { DeleteGuarantorButton, GuarantorDetailCard } from "../../components";
 
 type DashboardDetailGuarantorPageProps = {
   sidebarDefaultOpen: boolean;
@@ -38,7 +31,9 @@ export const DashboardDetailGuarantorPage = () => {
 
   if (isGuarantorLoading) {
     return (
-      <PageContainer title={t("pages.guarantor.detail.title")}>
+      <PageContainer
+        title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.guarantor.title"))}`}
+      >
         <SectionContainer padded>
           <DashboardLayout
             title={t("models.guarantor.title")}

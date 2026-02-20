@@ -1,12 +1,12 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
+import { Separator } from "@/components/ui/separator";
+import { getGender, getMaritalStatus } from "@/lib/get-enum-label";
 import { formatDate } from "@/utils";
-import type { GuarantorResponse } from "../types";
-import { getGender, getMaritalStatus } from "../utils";
 import { useTranslation } from "react-i18next";
+import type { GuarantorResponse } from "../types";
 
 type GuarantorDetailCardProps = {
   guarantor: GuarantorResponse;

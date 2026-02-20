@@ -204,7 +204,7 @@ model Customer {
 model BankAccount {
     id            String  @id @default(uuid()) @map("id") @db.VarChar(56)
     accountName   String  @map("account_name") @db.VarChar(150)
-    accountNumber String  @map("account_number") @db.VarChar(100)
+    accountNumber String  @unique @map("account_number") @db.VarChar(100)
     isPrimary     Boolean @default(false) @map("is_primary") @db.Boolean
     isVerified    Boolean @default(false) @map("is_verified") @db.Boolean
     isActive      Boolean @default(true) @map("is_active") @db.Boolean

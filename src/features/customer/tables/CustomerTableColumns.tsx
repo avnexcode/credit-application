@@ -9,6 +9,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icon } from "@/components/ui/icon";
 import { env } from "@/configs/env";
+import {
+  getEmploymentType,
+  getGender,
+  getMaritalStatus,
+} from "@/lib/get-enum-label";
 import { formatDate } from "@/utils";
 import { createColumnHelper, type Column } from "@tanstack/react-table";
 import Link from "next/link";
@@ -17,7 +22,6 @@ import { useTranslation } from "react-i18next";
 import { DeleteCustomerDialog } from "../components";
 import { useDeleteCustomer } from "../hooks";
 import type { CustomerResponse } from "../types";
-import { getEmploymentType, getGender, getMaritalStatus } from "../utils";
 
 export const createCustomerTableColumns = () => {
   const { t } = useTranslation();

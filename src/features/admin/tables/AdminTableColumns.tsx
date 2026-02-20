@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icon } from "@/components/ui/icon";
 import { env } from "@/configs/env";
-import { getGender, getMaritalStatus } from "@/features/customer/utils";
+import { getGender, getMaritalStatus } from "@/lib/get-enum-label";
 import { formatDate } from "@/utils";
 import { createColumnHelper, type Column } from "@tanstack/react-table";
 import Link from "next/link";

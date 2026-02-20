@@ -4,8 +4,9 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
-import { CreateCustomerForm } from "../../forms";
+import { capitalizeWords } from "@/utils";
 import { useTranslation } from "react-i18next";
+import { CreateCustomerForm } from "../../forms";
 
 type DashboardCreateCustomerPageProps = {
   sidebarDefaultOpen: boolean;
@@ -14,9 +15,14 @@ type DashboardCreateCustomerPageProps = {
 export const DashboardCreateCustomerPage = () => {
   const { t } = useTranslation();
   return (
-    <PageContainer title="Dashboard Create Customer">
-      <SectionContainer padded className="">
-        <DashboardLayout title={t("models.customer.title")}>
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.customer.title"))}`}
+    >
+      <SectionContainer padded>
+        <DashboardLayout
+          title={t("models.customer.title")}
+          className="space-y-5"
+        >
           <CreateCustomerForm />
         </DashboardLayout>
       </SectionContainer>

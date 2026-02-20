@@ -8,6 +8,7 @@ import type { GetServerSidePropsContext } from "next";
 import {
   adminRouter,
   authRouter,
+  bankAccountRouter,
   customerRouter,
   guarantorRouter,
   settingsRouter,
@@ -21,6 +22,7 @@ export const appRouter = createTRPCRouter({
   admin: adminRouter,
   customer: customerRouter,
   guarantor: guarantorRouter,
+  bankAccount: bankAccountRouter,
 });
 
 export type AppRouter = typeof appRouter;

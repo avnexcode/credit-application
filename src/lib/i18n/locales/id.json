@@ -728,6 +728,48 @@
         "employmentDataLabel": "Data Pekerjaan",
         "relationshipLabel": "Informasi Hubungan"
       }
+    },
+    "bankAccount": {
+      "title": "Rekening Bank",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Tambah Rekening Bank",
+            "description": "Isi detail yang diperlukan untuk membuat rekening bank baru."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Tambah",
+            "submitButtonLoading": "Menambahkan"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Perbarui Rekening Bank",
+            "description": "Ubah detail rekening bank sesuai kebutuhan."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Perbarui",
+            "submitButtonLoading": "Memperbarui"
+          }
+        },
+        "uploadingImage": "Mengunggah gambar"
+      },
+      "detail": {
+        "title": "Detail Rekening Bank",
+        "editButton": "Ubah",
+        "deleteButton": "Hapus",
+        "backButton": "Kembali",
+        "notFound": "Rekening bank tidak ditemukan",
+        "accountDetailsLabel": "Detail Rekening",
+        "statusLabel": "Informasi Status",
+        "status": {
+          "primary": "Rekening Utama",
+          "verified": "Status Verifikasi",
+          "active": "Status Aktif"
+        }
+      }
     }
   },
   "components": {
@@ -943,6 +985,12 @@
     "retry": "Coba lagi",
     "years": "Tahun",
     "createdAt": "Dibuat pada",
-    "updatedAt": "Diperbarui pada"
+    "updatedAt": "Diperbarui pada",
+    "yes": "Ya",
+    "no": "Tidak",
+    "active": "Aktif",
+    "inactive": "Tidak Aktif",
+    "verified": "Terverifikasi",
+    "pending": "Tertunda"
   }
 }

@@ -6,18 +6,21 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
-import { api } from "@/utils";
-import { formatDate } from "@/utils";
+import {
+  getEmploymentType,
+  getGender,
+  getMaritalStatus,
+} from "@/lib/get-enum-label";
+import { api, capitalizeWords, formatDate } from "@/utils";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
 import {
   CustomerDetailCard,
+  DeleteCustomerButton,
   DetailRow,
   DetailSection,
-  DeleteCustomerButton,
 } from "../../components";
-import { getEmploymentType, getGender, getMaritalStatus } from "../../utils";
 
 type DashboardDetailCustomerPageProps = {
   sidebarDefaultOpen: boolean;
@@ -32,7 +35,9 @@ export const DashboardDetailCustomerPage = () => {
 
   if (isCustomerLoading) {
     return (
-      <PageContainer title={t("pages.customer.detail.title")}>
+      <PageContainer
+        title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.customer.title"))}`}
+      >
         <SectionContainer padded>
           <DashboardLayout
             title={t("models.customer.title")}

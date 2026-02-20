@@ -742,6 +742,48 @@
         "employmentDataLabel": "Employment Data",
         "relationshipLabel": "Relationship Information"
       }
+    },
+    "bankAccount": {
+      "title": "Bank Account",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Create Bank Account",
+            "description": "Fill in the details to create a new bank account."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Create",
+            "submitButtonLoading": "Creating"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Update Bank Account",
+            "description": "Modify the bank account details as needed."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Update",
+            "submitButtonLoading": "Updating"
+          }
+        },
+        "uploadingImage": "Uploading image"
+      },
+      "detail": {
+        "title": "Bank Account Details",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "backButton": "Back",
+        "notFound": "Bank account not found",
+        "accountDetailsLabel": "Account Details",
+        "statusLabel": "Status Information",
+        "status": {
+          "primary": "Primary Account",
+          "verified": "Verified Status",
+          "active": "Active Status"
+        }
+      }
     }
   },
   "components": {
@@ -959,6 +1001,12 @@
     "showMore": "Show More",
     "years": "Years",
     "createdAt": "Created at",
-    "updatedAt": "Updated at"
+    "updatedAt": "Updated at",
+    "yes": "Yes",
+    "no": "No",
+    "active": "Active",
+    "inactive": "Inactive",
+    "verified": "Verified",
+    "pending": "Pending"
   }
 }

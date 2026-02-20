@@ -13,8 +13,9 @@ import {
   getEmploymentType,
   getGender,
   getMaritalStatus,
-} from "@/features/customer/utils";
-import { formatDate, getRelationship } from "@/utils";
+  getRelationship,
+} from "@/lib/get-enum-label";
+import { formatDate } from "@/utils";
 import { createColumnHelper, type Column } from "@tanstack/react-table";
 import Link from "next/link";
 import { useCallback, useState } from "react";

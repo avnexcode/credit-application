@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui/icon";
 import { env } from "@/configs/env";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
 import { useQueryParams } from "@/hooks";
-import { api } from "@/utils";
+import { api, capitalizeWords } from "@/utils";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { AdminTable } from "../../tables";
@@ -27,7 +27,9 @@ export const DashboardAdminPage = () => {
     api.admin.getAll.useQuery({ params: { ...queryParams } });
 
   return (
-    <PageContainer title="Dashboard Admin">
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.admin.title"))}`}
+    >
       <SectionContainer padded>
         <DashboardLayout title={t("models.admin.title")} className="space-y-5">
           <header>
@@ -53,7 +55,7 @@ export const DashboardAdminPage = () => {
               <AdminTable admins={admins} />
             ) : (
               <DataTableSkeleton
-                rowCount={15}
+                rowCount={queryParams.limit}
                 columnCount={7}
                 filterCount={0}
                 cellWidths={[

@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui/icon";
 import { env } from "@/configs/env";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
 import { useQueryParams } from "@/hooks";
-import { api } from "@/utils";
+import { api, capitalizeWords } from "@/utils";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { GuarantorTable } from "../../tables";
@@ -27,7 +27,9 @@ export const DashboardGuarantorPage = () => {
     api.guarantor.getAll.useQuery({ params: { ...queryParams } });
 
   return (
-    <PageContainer title="Dashboard Guarantor">
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.guarantor.title"))}`}
+    >
       <SectionContainer padded>
         <DashboardLayout
           title={t("models.guarantor.title")}
@@ -56,7 +58,7 @@ export const DashboardGuarantorPage = () => {
               <GuarantorTable guarantors={guarantors} />
             ) : (
               <DataTableSkeleton
-                rowCount={15}
+                rowCount={queryParams.limit}
                 columnCount={7}
                 filterCount={0}
                 cellWidths={[

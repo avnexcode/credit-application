@@ -5,6 +5,5 @@ export * from "./format-currency";
 export * from "./format-date";
 export * from "./format-string";
 export * from "./format-time";
-export * from "./get-enum-label";
 export * from "./render-elements";
 export * from "./slug-generator";

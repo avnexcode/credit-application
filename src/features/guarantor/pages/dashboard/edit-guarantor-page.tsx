@@ -4,7 +4,7 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
-import { api } from "@/utils";
+import { api, capitalizeWords } from "@/utils";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { EditGuarantorForm } from "../../forms";
@@ -21,7 +21,9 @@ export const DashboardEditGuarantorPage = () => {
     api.guarantor.getById.useQuery({ id }, { enabled: !!id });
 
   return (
-    <PageContainer title="Dashboard Guarantor">
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.guarantor.title"))}`}
+    >
       <SectionContainer padded>
         <DashboardLayout
           title={t("models.guarantor.title")}

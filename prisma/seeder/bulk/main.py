@@ -15,6 +15,7 @@ from dummy import (
 from admin import generate_admins_bulk_insert_sql
 from customer import generate_customers_bulk_insert_sql
 from guarantor import generate_guarantors_bulk_insert_sql
+from bank_account import generate_bank_accounts_bulk_insert_sql
 
 
 def main():
@@ -55,10 +56,18 @@ def main():
         employment_types=EMPLOYMENT_TYPES,
         marital_statuses=MARITAL_STATUSES,
         relationships=RELATIONSHIPS,
-        filename="./prisma/seeder/sql/guarantors_seed.sql",
         ids=customer_file,  # ✅ Gunakan return value langsung, bukan hardcode path
+        filename="./prisma/seeder/sql/guarantors_seed.sql",
     )
     print(f"✅ Guarantors SQL generated: {guarantor_file}")
+
+    bank_account_file = generate_bank_accounts_bulk_insert_sql(
+        n=50,
+        fullNames=FULL_NAMES,
+        ids=customer_file,  # ✅ Gunakan return value langsung, bukan hardcode path
+        filename="./prisma/seeder/sql/bank_accounts_seed.sql",
+    )
+    print(f"✅ Bank Accounts SQL generated: {bank_account_file}")
 
     print("🎉 All SQL files generated successfully!")
 

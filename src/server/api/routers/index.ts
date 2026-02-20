@@ -1,5 +1,6 @@
 export * from "./admin";
 export * from "./auth";
+export * from "./bank-account";
 export * from "./customer";
 export * from "./guarantor";
 export * from "./settings";

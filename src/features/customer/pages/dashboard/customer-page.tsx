@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui/icon";
 import { env } from "@/configs/env";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
 import { useQueryParams } from "@/hooks";
-import { api } from "@/utils";
+import { api, capitalizeWords } from "@/utils";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { CustomerTable } from "../../tables";
@@ -31,7 +31,9 @@ export const DashboardCustomerPage = () => {
     api.customer.getAll.useQuery({ params: { ...queryParams } });
 
   return (
-    <PageContainer title="Dashboard Customer">
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.customer.title"))}`}
+    >
       <SectionContainer padded>
         <DashboardLayout
           title={t("models.customer.title")}
@@ -60,7 +62,7 @@ export const DashboardCustomerPage = () => {
               <CustomerTable customers={customers} />
             ) : (
               <DataTableSkeleton
-                rowCount={15}
+                rowCount={queryParams.limit}
                 columnCount={7}
                 filterCount={0}
                 cellWidths={[

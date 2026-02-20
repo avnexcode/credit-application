@@ -4,6 +4,7 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { DashboardLayout } from "@/features/dashboard/components/layouts";
+import { capitalizeWords } from "@/utils";
 import { useTranslation } from "react-i18next";
 import { CreateGuarantorForm } from "../../forms";
 
@@ -15,7 +16,9 @@ export const DashboardCreateGuarantorPage = () => {
   const { t } = useTranslation();
 
   return (
-    <PageContainer title="Dashboard Guarantor">
+    <PageContainer
+      title={`${capitalizeWords(t("components.sidebar.items.dashboard"))} ${capitalizeWords(t("models.guarantor.title"))}`}
+    >
       <SectionContainer padded>
         <DashboardLayout
           title={t("models.guarantor.title")}
