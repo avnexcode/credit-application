@@ -10,13 +10,7 @@ export const passwordValidation = z
   .regex(/\d/)
   .regex(/[@$!%*?&]/);
 
-export const emailValidation = z
-  .string()
-  .email()
-  .min(1)
-  .max(150)
-  .trim()
-  .toLowerCase();
+export const emailValidation = z.email().min(1).max(150).trim().toLowerCase();
 
 export const registerRequest = z
   .object({

@@ -46,6 +46,7 @@ const InputStringNumberInner = <T extends FieldValues>(
             id={field.name}
             type="text"
             aria-invalid={fieldState.invalid}
+            value={field.value ?? ""}
             placeholder={
               inputProps.placeholder ??
               t("forms.placeholders.input", { field: label })

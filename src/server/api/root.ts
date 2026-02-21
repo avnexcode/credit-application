@@ -11,6 +11,7 @@ import {
   bankAccountRouter,
   customerRouter,
   guarantorRouter,
+  interviewQuestionRouter,
   settingsRouter,
   userRouter,
 } from "./routers";
@@ -23,6 +24,7 @@ export const appRouter = createTRPCRouter({
   customer: customerRouter,
   guarantor: guarantorRouter,
   bankAccount: bankAccountRouter,
+  interviewQuestion: interviewQuestionRouter,
 });
 
 export type AppRouter = typeof appRouter;

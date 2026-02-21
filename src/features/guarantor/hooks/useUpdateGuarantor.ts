@@ -61,6 +61,7 @@ export const useUpdateGuarantor = (
     };
 
     setInitialData(initGuarantorValues);
+    form.reset(initGuarantorValues);
   }, [guarantor, form]);
 
   const watchedValues = form.watch();

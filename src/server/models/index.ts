@@ -4,5 +4,6 @@ export * from "./auth.model";
 export * from "./bank-account.model";
 export * from "./customer.model";
 export * from "./guarantor.model";
+export * from "./interview-question.model";
 export * from "./settings.model";
 export * from "./user.model";

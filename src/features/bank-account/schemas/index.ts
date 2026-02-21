@@ -5,9 +5,6 @@ import { z } from "zod";
 export const baseBankAccountFormSchema = (t: TFunction = translator) => {
   const accountNameField = t("models.bankAccount.fields.accountName");
   const accountNumberField = t("models.bankAccount.fields.accountNumber");
-  const isPrimaryField = t("models.bankAccount.fields.isPrimary");
-  const isVerifiedField = t("models.bankAccount.fields.isVerified");
-  const isActiveField = t("models.bankAccount.fields.isActive");
   const customerIdField = t("models.customer.title");
 
   return z.object({

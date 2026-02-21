@@ -15,7 +15,6 @@ def read_ids_from_sql(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Regex untuk menangkap UUID di posisi pertama setiap baris VALUES
     pattern = r"\('([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})'"
     ids = re.findall(pattern, content)
     return ids

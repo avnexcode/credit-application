@@ -513,44 +513,68 @@ FULL_NAMES = [
     "Megan Domani",
 ]
 
-GENDERS = ["male", "female"]
-
-MARITAL_STATUSES = ["single", "married", "divorced", "widowed"]
-
-EMPLOYMENT_TYPES = [
-    "civil_servant",
-    "private_employee",
-    "state_owned_employee",
-    "contract_employee",
-    "freelancer",
-    "entrepreneur",
-    "business_owner",
-    "farmer",
-    "fisherman",
-    "laborer",
-    "teacher",
-    "lecturer",
-    "health_worker",
-    "student",
-    "homemaker",
-    "retired",
-    "unemployed",
-]
-
-RELATIONSHIPS = [
-    "father",
-    "mother",
-    "husband",
-    "wife",
-    "child",
-    "sibling",
-    "grandfather",
-    "grandmother",
-    "uncle",
-    "aunt",
-    "cousin",
-    "guardian",
-    "other",
-]
-
 CITIES = ["Jakarta", "Blitar", "Wonogiri", "Malang"]
+
+SAMPLE_QUESTIONS = {
+    "personal": [
+        "Siapa nama lengkap Anda?",
+        "Berapa usia Anda?",
+        "Apa status pernikahan Anda?",
+    ],
+    "identity": [
+        "Berapa nomor KTP/NIK Anda?",
+        "Di mana Anda dilahirkan?",
+        "Apa tanggal lahir Anda?",
+    ],
+    "contact": [
+        "Berapa nomor telepon Anda?",
+        "Apa alamat email Anda?",
+    ],
+    "address": [
+        "Apa alamat tempat tinggal Anda saat ini?",
+        "Sudah berapa lama Anda tinggal di alamat tersebut?",
+    ],
+    "employment": [
+        "Apa pekerjaan Anda saat ini?",
+        "Apa jenis pekerjaan Anda?",
+        "Sudah berapa lama Anda bekerja di pekerjaan saat ini?",
+    ],
+    "income": [
+        "Berapa penghasilan bulanan Anda?",
+        "Apakah Anda memiliki sumber penghasilan tambahan?",
+    ],
+    "expense": [
+        "Berapa total pengeluaran bulanan Anda?",
+        "Apakah Anda memiliki kewajiban cicilan atau pinjaman lain?",
+    ],
+    "financial": [
+        "Apakah Anda memiliki rekening tabungan?",
+        "Berapa rata-rata saldo bulanan Anda?",
+    ],
+    "business": [
+        "Apakah Anda memiliki usaha atau bisnis?",
+        "Sudah berapa lama Anda menjalankan usaha tersebut?",
+    ],
+    "collateral": [
+        "Apakah Anda memiliki aset yang dapat dijadikan jaminan?",
+        "Berapa perkiraan nilai jaminan tersebut?",
+    ],
+    "creditHistory": [
+        "Apakah Anda pernah mengambil pinjaman sebelumnya?",
+        "Apakah Anda pernah mengalami gagal bayar pinjaman?",
+    ],
+    "loanPurpose": [
+        "Apa tujuan pengajuan pinjaman ini?",
+        "Bagaimana rencana penggunaan dana pinjaman tersebut?",
+    ],
+}
+
+OPTIONS_MAP = {
+    "single_choice": ["Yes", "No", "Maybe"],
+    "multiple_choice": ["Option A", "Option B", "Option C", "Option D"],
+    "yes_no": ["Yes", "No"],
+    "true_false": ["True", "False"],
+    "rating": [],
+    "scale": [],
+    "percentage": [],
+}

@@ -57,6 +57,7 @@ export const useUpdateCustomer = (
     };
 
     setInitialData(initCustomerValues);
+    form.reset(initCustomerValues);
   }, [customer, form]);
 
   const watchedValues = form.watch();

@@ -784,6 +784,44 @@
           "active": "Active Status"
         }
       }
+    },
+    "interviewQuestion": {
+      "title": "Interview Question",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Create Interview Question",
+            "description": "Fill in the details to create a new interview question."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Create",
+            "submitButtonLoading": "Creating"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Update Interview Question",
+            "description": "Modify the interview question details as needed."
+          },
+          "footer": {
+            "cancelButton": "Cancel",
+            "submitButton": "Update",
+            "submitButtonLoading": "Updating"
+          }
+        },
+        "uploadingImage": "Uploading image"
+      },
+      "detail": {
+        "title": "Interview Question Details",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "backButton": "Back",
+        "notFound": "Interview question not found",
+        "configurationLabel": "Question Configuration",
+        "contentLabel": "Question Content",
+        "metadataLabel": "Metadata"
+      }
     }
   },
   "components": {
@@ -1007,6 +1045,8 @@
     "active": "Active",
     "inactive": "Inactive",
     "verified": "Verified",
-    "pending": "Pending"
+    "pending": "Pending",
+    "required": "Required",
+    "optional": "Optional"
   }
 }

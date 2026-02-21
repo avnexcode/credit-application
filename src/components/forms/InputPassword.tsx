@@ -44,6 +44,7 @@ const InputPasswordInner = <T extends FieldValues>(
               id={field.name}
               type={isPasswordVisible ? "text" : "password"}
               aria-invalid={fieldState.invalid}
+              value={field.value ?? ""}
               placeholder={
                 inputProps.placeholder ??
                 t("forms.placeholders.input", { field: label })

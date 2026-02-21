@@ -40,6 +40,7 @@ export const useUpdateBankAccount = (
     };
 
     setInitialData(initBankAccountValues);
+    form.reset(initBankAccountValues);
   }, [bankAccount, form]);
 
   const watchedValues = form.watch();

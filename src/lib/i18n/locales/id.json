@@ -770,6 +770,44 @@
           "active": "Status Aktif"
         }
       }
+    },
+    "interviewQuestion": {
+      "title": "Pertanyaan Wawancara",
+      "forms": {
+        "create": {
+          "header": {
+            "title": "Tambah Pertanyaan Wawancara",
+            "description": "Isi detail yang diperlukan untuk membuat pertanyaan wawancara baru."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Tambah",
+            "submitButtonLoading": "Menambahkan"
+          }
+        },
+        "update": {
+          "header": {
+            "title": "Perbarui Pertanyaan Wawancara",
+            "description": "Ubah detail pertanyaan wawancara sesuai kebutuhan."
+          },
+          "footer": {
+            "cancelButton": "Batal",
+            "submitButton": "Perbarui",
+            "submitButtonLoading": "Memperbarui"
+          }
+        },
+        "uploadingImage": "Mengunggah gambar"
+      },
+      "detail": {
+        "title": "Detail Pertanyaan Wawancara",
+        "editButton": "Edit",
+        "deleteButton": "Hapus",
+        "backButton": "Kembali",
+        "notFound": "Pertanyaan wawancara tidak ditemukan",
+        "configurationLabel": "Konfigurasi Pertanyaan",
+        "contentLabel": "Konten Pertanyaan",
+        "metadataLabel": "Metadata"
+      }
     }
   },
   "components": {
@@ -991,6 +1029,8 @@
     "active": "Aktif",
     "inactive": "Tidak Aktif",
     "verified": "Terverifikasi",
-    "pending": "Tertunda"
+    "pending": "Tertunda",
+    "required": "Wajib",
+    "optional": "Opsional"
   }
 }

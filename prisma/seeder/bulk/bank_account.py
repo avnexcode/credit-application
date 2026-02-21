@@ -1,5 +1,4 @@
 import random
-from datetime import datetime, timedelta
 import uuid
 from function import read_ids_from_sql
 

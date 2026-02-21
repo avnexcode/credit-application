@@ -4,18 +4,20 @@ import os
 
 sys.path.append(os.path.dirname(__file__))
 
-from dummy import (
-    FULL_NAMES,
-    CITIES,
+from dummy import FULL_NAMES, CITIES, SAMPLE_QUESTIONS, OPTIONS_MAP
+from enumfile import (
     GENDERS,
     EMPLOYMENT_TYPES,
     MARITAL_STATUSES,
     RELATIONSHIPS,
+    QUESTION_CATEGORIES,
+    QUESTION_TYPES,
 )
 from admin import generate_admins_bulk_insert_sql
 from customer import generate_customers_bulk_insert_sql
 from guarantor import generate_guarantors_bulk_insert_sql
 from bank_account import generate_bank_accounts_bulk_insert_sql
+from interview import generate_interview_questions_bulk_insert_sql
 
 
 def main():
@@ -42,7 +44,6 @@ def main():
     )
     print(f"✅ Customers SQL generated: {customer_file}")
 
-    # ✅ Guarantor hanya berjalan jika customer_file sudah tersedia dan file-nya ada
     if not customer_file or not os.path.exists(customer_file):
         raise FileNotFoundError(
             f"❌ Customer seed file tidak ditemukan: {customer_file}. Guarantor generation dibatalkan."
@@ -56,7 +57,7 @@ def main():
         employment_types=EMPLOYMENT_TYPES,
         marital_statuses=MARITAL_STATUSES,
         relationships=RELATIONSHIPS,
-        ids=customer_file,  # ✅ Gunakan return value langsung, bukan hardcode path
+        ids=customer_file,
         filename="./prisma/seeder/sql/guarantors_seed.sql",
     )
     print(f"✅ Guarantors SQL generated: {guarantor_file}")
@@ -64,10 +65,21 @@ def main():
     bank_account_file = generate_bank_accounts_bulk_insert_sql(
         n=50,
         fullNames=FULL_NAMES,
-        ids=customer_file,  # ✅ Gunakan return value langsung, bukan hardcode path
+        ids=customer_file,
         filename="./prisma/seeder/sql/bank_accounts_seed.sql",
     )
     print(f"✅ Bank Accounts SQL generated: {bank_account_file}")
+
+    interview_question_file = generate_interview_questions_bulk_insert_sql(
+        n=50,
+        question_types=QUESTION_TYPES,
+        question_categories=QUESTION_CATEGORIES,
+        sample_questions=SAMPLE_QUESTIONS,
+        options_map=OPTIONS_MAP,
+        admin_ids="./prisma/seeder/sql/admins_seed.sql",
+        filename="./prisma/seeder/sql/interview_questions_seed.sql",
+    )
+    print(f"✅ Interview Question SQL generated: {interview_question_file}")
 
     print("🎉 All SQL files generated successfully!")
 

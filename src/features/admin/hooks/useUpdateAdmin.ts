@@ -52,6 +52,7 @@ export const useUpdateAdmin = (
     };
 
     setInitialData(initAdminValues);
+    form.reset(initAdminValues);
   }, [admin, form]);
 
   const watchedValues = form.watch();
